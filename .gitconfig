@@ -185,3 +185,7 @@
 [url "git://gist.github.com/"]
 
 	insteadOf = "gist:"
+
+[user]
+	email = bhicks329@gmail.com
+	name = Ben Hicks
