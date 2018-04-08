@@ -143,6 +143,7 @@ casks=(
   alfred
   bartender
   bettertouchtool
+  blockblock
   charles
   cleanmymac
   diffmerge
@@ -153,12 +154,13 @@ casks=(
   google-chrome
   handbrake
   hyper
+  knockknock
   iterm2
   launchrocket
   lastpass
   microsoft-office
   muzzle
-  parallels12
+  parallels
   private-internet-access
   quicklook-json
   quicklook-csv
@@ -168,7 +170,7 @@ casks=(
   sourcetree
   spotify
   steam
-  sublime-text2
+  sublime
   suspicious-package
   textexpander
   transmission
@@ -176,11 +178,11 @@ casks=(
   vlc
   virtualbox
   visual-studio-code
+  whatsapp
   zoomus
 )
 
 # Install apps to /Applications
-# Default is: /Users/$user/Applications
 echo "installing apps with Cask..."
 brew cask install ${casks[@]}
 
