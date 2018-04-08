@@ -137,8 +137,8 @@ echo "Setting up Zsh plugins..."
 cd ~/.oh-my-zsh/custom/plugins
 git clone git://github.com/zsh-users/zsh-syntax-highlighting.git
 
-echo "Setting ZSH as shell..."
-chsh -s /bin/zsh
+#echo "Setting ZSH as shell..."
+#chsh -s /bin/zsh
 
 # Casks
 casks=(
