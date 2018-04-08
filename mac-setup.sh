@@ -40,6 +40,8 @@ brews=(
   tree
   wifi-password
   xpdf
+  zsh-autosuggestions
+  zsh-syntax-highlighting
 )
 
 casks=(
@@ -64,6 +66,7 @@ casks=(
   launchrocket
   lastpass
   microsoft-office
+  microsoft-azure-storage-explorer
   muzzle
 	onedrive
   parallels
