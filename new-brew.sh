@@ -105,12 +105,10 @@ apps=(
   wifi-password
   xpdf
 )
-brew install --appdir="/Applications" ${apps[@]}
+brew install ${apps[@]}
 
 #@TODO install our custom fonts and stuff
 
-echo "Cleaning up brew"
-brew cleanup
 
 echo "Installing homebrew cask"
 brew tap caskroom/cask
@@ -120,7 +118,6 @@ brew tap caskroom/cask
 #git clone git@github.com:bradp/dotfiles.git .dotfiles
 #cd .dotfiles
 #sh symdotfiles
-
 
 echo "Installing Lastpass from the app store"
 mas install 926036361
@@ -185,17 +182,12 @@ casks=(
 # Install apps to /Applications
 # Default is: /Users/$user/Applications
 echo "installing apps with Cask..."
-brew cask install --appdir="/Applications" ${casks[@]}
+brew cask install ${casks[@]}
 
 brew cask cleanup
 brew cleanup
 
-echo "Please setup and sync Dropbox, and then run this script again."
-read -p "Press [Enter] key after this..."
-
-
 killall Finder
-
 
 echo "Done!"
 
