@@ -222,6 +222,10 @@ done
 echo "Installing Lastpass "
 '/usr/local/Caskroom/lastpass/latest/LastPass Installer/LastPass Installer.app'
 
+echo "Installing App Store Items"
+echo "Install Magnet"
+mas install 441258766
+
 #Install Zsh & Oh My Zsh
 echo "Installing Oh My ZSH..."
 curl -L http://install.ohmyz.sh | sh
