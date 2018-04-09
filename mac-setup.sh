@@ -6,6 +6,7 @@ brews=(
   azure-cli
   aws-shell
   coreutils
+  git-credential-manager
   git-extras
   dnsmasq
   findutils
@@ -57,6 +58,7 @@ casks=(
   dropbox
   filezilla
   firefox
+  gitkraken
   google-chrome
   handbrake
   hyper
@@ -70,6 +72,7 @@ casks=(
   muzzle
 	onedrive
   parallels
+  powershell
   private-internet-access
   quicklook-json
   quicklook-csv
@@ -163,6 +166,12 @@ sudo scutil --set HostName smackbook
 #
 # @Todo - Setup GPG Keys for sigining Git Commits
 #
+
+#
+# Powershell 6 workaround
+#
+
+ brew install curl --with-openssl --with-gssapi
 
 # Install Java
 prompt "Install Java"
