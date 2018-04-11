@@ -18,6 +18,7 @@ brews=(
   go
   htop
   iftop
+  jq
   legit
   lnav
   lynx
@@ -35,6 +36,8 @@ brews=(
   tcptrace
   tcpreplay
   tcpflow
+  telnet
+  terraform
   thefuck
   tmux
   trash
@@ -66,9 +69,11 @@ casks=(
   iterm2
   java
   launchrocket
+  licecap
   lastpass
   microsoft-office
   microsoft-azure-storage-explorer
+  microsoft-remote-desktop-beta
   muzzle
 	onedrive
   parallels
@@ -84,7 +89,7 @@ casks=(
   steam
   sublime-text
   suspicious-package
-  textexpander
+  textexpandet
   transmission
   vagrant
   vlc
