@@ -86,11 +86,13 @@ casks=(
   slack
   sourcetree
   spotify
+  sql-operations-studio
   steam
   sublime-text
   suspicious-package
   textexpandet
   transmission
+  tunnelblick-beta
   vagrant
   vlc
   virtualbox
