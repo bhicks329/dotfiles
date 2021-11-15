@@ -160,7 +160,7 @@ brew "minikube"
 
 
 # DOCKER
-# brew "docker"
+brew "docker"
 # brew "docker-compose"
 # brew "docker-machine"
 # brew "xhyve"
