@@ -208,7 +208,7 @@
 
 [commit]
   # https://help.github.com/articles/signing-commits-using-gpg/
-  gpgsign = true
+	gpgsign = true
 
 	template = ~/.git-template-commit
 
@@ -291,3 +291,9 @@
   smudge = git-lfs smudge -- %f
   process = git-lfs filter-process
   required = true
+[user]
+	name = Ben Hicks
+	email = bhicks329@gmail.com
+	signingkey = 102966B9A51DA607
+[init]
+	defaultBranch = main

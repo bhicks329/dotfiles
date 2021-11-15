@@ -10,10 +10,11 @@ bot "Create required directories."
 
 # Declare array of directories.
 declare -a createdirarray=(
-  "$HOME/Applications"
-  "$HOME/Work"
-  "$HOME/projects"
-  "$HOME/code"
+  # "$HOME/Applications"
+  # "$HOME/Work"
+  # "$HOME/projects"
+  "$HOME/source"
+  "$HOME/repos"
   "$HOME/.tmp"
   "$HOME/.ssh"
   "$HOME/.ssh/control"

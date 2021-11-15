@@ -44,7 +44,7 @@ for i in "${dotfilesfilearray[@]}"; do
   # We want to handle .*, *.cfg, *.conf and NOT .DS_Store, .git, .osx, .macos and no *.sh files
   while IFS=  read -r -d $'\0'; do
     tmparr+=("$REPLY")
-  done < <(find "$i" -type f -maxdepth 1 \( -name ".*" -o -name "*.cfg" -o -name "*.conf" \) -a -not -name .DS_Store -not -name .git -not -name .osx -not -name .macos -not -name "*.sh" -print0)
+  done < <(find "$i" -maxdepth 1 -type f \( -name ".*" -o -name "*.cfg" -o -name "*.conf" \) -a -not -name .DS_Store -not -name .git -not -name .osx -not -name .macos -not -name "*.sh" -print0)
 
   for j in "${tmparr[@]}"; do
     # Symlink, targetting from $i (parent folder of dotfile group) to $HOME
@@ -59,6 +59,7 @@ process_symlinks "$dotfilesdir/bin/git-friendly/branch" "$dotfilesdir/bin/git-fr
 process_symlinks "$dotfilesdir/bin/git-friendly/merge" "$dotfilesdir/bin/git-friendly" "$dotfilesdir/bin"
 process_symlinks "$dotfilesdir/bin/git-friendly/pull" "$dotfilesdir/bin/git-friendly" "$dotfilesdir/bin"
 process_symlinks "$dotfilesdir/bin/git-friendly/push" "$dotfilesdir/bin/git-friendly" "$dotfilesdir/bin"
+
 
 # If files are not stored in ~/dotfiles then symlink to that folder
 # note: if ~/dotfiles does exist or links elsewhere it only breaks

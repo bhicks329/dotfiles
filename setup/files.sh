@@ -17,6 +17,7 @@ botintro "Sourcing directories and files to handle."
 declare -a dotfilesdirarray=(
   "$dotfilesdir/bin"
   "$dotfilesdir/.mackup"
+  "$dotfilesdir/.config"
 )
 
 # Declare array of directories we want to symlink files from.
@@ -24,6 +25,7 @@ declare -a dotfilesfilearray=(
   "$dotfilesdir/ack"
   "$dotfilesdir/asdf"
   "$dotfilesdir/bash"
+  "$dotfilesdir/brew"
   "$dotfilesdir/curl"
   "$dotfilesdir/editor"
   "$dotfilesdir/git"

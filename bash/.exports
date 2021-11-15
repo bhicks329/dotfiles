@@ -62,8 +62,9 @@ export MANPAGER='less -X';
 # https://stackoverflow.com/a/42265848/96656
 export GPG_TTY=$(tty);
 
-# Brew cask
-export HOMEBREW_CASK_OPTS='--appdir=/Applications'
+# Homebrew
+export HOMEBREW_CASK_OPTS='--appdir=/Applications --no-quarantine'
+export HOMEBREW_BUNDLE_FILE=~/.brewfile
 
 # MySQL@5.7
 export LIBRARY_PATH=$LIBRARY_PATH:/usr/local/opt/openssl@1.1/lib/

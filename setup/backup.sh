@@ -53,7 +53,7 @@ for i in "${dotfilesfilearray[@]}"; do
   # We want to handle .*, *.cfg, *.conf and NOT .DS_Store, .git, .osx, .macos and no *.sh files
   while IFS=  read -r -d $'\0'; do
     tmparr+=("$REPLY")
-  done < <(find "$i" -type f -maxdepth 1 \( -name ".*" -o -name "*.cfg" -o -name "*.conf" \) -a -not -name .DS_Store -not -name .git -not -name .osx -not -name .macos -not -name "*.sh" -print0)
+  done < <(find  "$i" -maxdepth 1 -type f \( -name ".*" -o -name "*.cfg" -o -name "*.conf" \) -a -not -name .DS_Store -not -name .git -not -name .osx -not -name .macos -not -name "*.sh" -print0)
 
   # For each match file in each directory, copy that to backup
   for j in "${tmparr[@]}"; do

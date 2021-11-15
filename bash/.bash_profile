@@ -62,8 +62,8 @@ fi;
 
 # Config SSH to use gpg-agent
 # https://ryanlue.com/posts/2017-06-29-gpg-for-ssh-auth
-export SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)
-gpgconf --launch gpg-agent
+# export SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)
+# gpgconf --launch gpg-agent
 #ps -p $SSH_AGENT_PID > /dev/null || eval "$(ssh-agent -s)"
 
 # Add tab completion for SSH hostnames based on ~/.ssh/config, ignoring wildcards.

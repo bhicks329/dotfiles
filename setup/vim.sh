@@ -28,6 +28,7 @@ if vim n 2>/dev/null; then
     "$HOME/.vim/undo"
   )
 
+
   action "Creating vim directories"
   # Send array to make_directories function.
   make_directories ${createvimdirarray[@]}
