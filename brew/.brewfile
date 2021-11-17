@@ -182,7 +182,7 @@ mas "Airmail", id: 918858936
 # GENERAL
 cask "caffeine"
 cask "diskwave"
-cask "dropbox"
+# cask "dropbox"
 cask "firefox"
 cask "g-desktop-suite"
 cask "google-chrome"
@@ -218,4 +218,4 @@ cask "soundsource"
 cask "spotify"
 cask "vlc"
 cask "obs"
-cask "obs-virtualcam"
+cask "obs-virtualcam" 
