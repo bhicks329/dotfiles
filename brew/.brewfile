@@ -171,13 +171,7 @@ brew "docker"
 brew "cmatrix"
 # cask "spotmenu"
 
-# APP STORE
-mas "1Password", id: 1333542190
-mas "Airmail", id: 918858936
-# mas "Microsoft Word", id: 462054704
-# mas "Microsoft Excel", id: 462058435
-# mas "Microsoft PowerPoint", id: 462062816
-# mas "Microsoft Outlook", id: 985367838
+
 
 # GENERAL
 cask "caffeine"
@@ -188,24 +182,23 @@ cask "g-desktop-suite"
 cask "google-chrome"
 cask "grammarly"
 cask "iterm2"
-cask "moom"
+# cask "moom"
 cask "flux"
-cask "microsoft-outlook" 
-cask "microsoft-word"
-cask "microsoft-excel"
-cask "microsoft-powerpoint"
+# cask "microsoft-outlook" 
+# cask "microsoft-word"
+# cask "microsoft-excel"
+# cask "microsoft-powerpoint"
 cask "microsoft-edge"
 cask "microsoft-auto-update"
-cask "microsoft-remote-desktop"
 cask "microsoft-azure-storage-explorer"
-cask "todoist"
+# cask "todoist"
 cask "sublime-text"
-cask "microsoft-remote-desktop"
+# cask "microsoft-remote-desktop"
 cask "github"
-cask "parallels"
+# cask "parallels"
 
 # Chat and Meetings
-cask "slack"
+# cask "slack"
 cask "whatsapp-beta"
 cask "zoom"
 cask "microsoft-teams"
@@ -218,4 +211,19 @@ cask "soundsource"
 cask "spotify"
 cask "vlc"
 cask "obs"
-cask "obs-virtualcam" 
+cask "obs-virtualcam"
+
+# APP STORE
+mas "1Password", id: 1333542190
+mas "Airmail", id: 918858936
+mas "Microsoft Word", id: 462054704
+mas "Microsoft Excel", id: 462058435
+mas "Microsoft PowerPoint", id: 462062816
+mas "Microsoft Outlook", id: 985367838
+mas "Microsoft OneNote", id:784801555
+mas "Fantastical - Calendar & Tasks", id: 975937182
+mas "Slack for Desktop", id: 803453959
+mas "Parallels Desktop", id: 1085114709
+mas "Microsoft Remote Desktop", id: 1295203466
+mas "Moom", id: 419330170
+mas "Todoist: To-Do List & Tasks", id: 585829637
