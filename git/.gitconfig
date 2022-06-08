@@ -208,7 +208,7 @@
 
 [commit]
   # https://help.github.com/articles/signing-commits-using-gpg/
-	gpgsign = true
+	gpgsign = false
 
 	template = ~/.git-template-commit
 
@@ -297,3 +297,5 @@
 	signingkey = 102966B9A51DA607
 [init]
 	defaultBranch = main
+[gpg]
+	program = gpg

@@ -16,7 +16,7 @@ brew "gnu-sed"
 
 # TERMINALS
 brew "bash"
-brew "bash-completion2"
+brew "bash-completion@2"
 brew "zsh"
 brew "zsh-completion"
 
@@ -215,7 +215,7 @@ cask "obs-virtualcam"
 
 # APP STORE
 mas "1Password", id: 1333542190
-mas "Airmail", id: 918858936
+#mas "Airmail", id: 918858936
 mas "Microsoft Word", id: 462054704
 mas "Microsoft Excel", id: 462058435
 mas "Microsoft PowerPoint", id: 462062816

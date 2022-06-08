@@ -38,6 +38,10 @@ if $brewinstall; then
     success "Homebrew already installed."
   fi;
 
+  # Add brew to path
+  echo 'eval "$(/opt/homebrew/bin/brew shellenv)"' >> ~/.zprofile
+  eval "$(/opt/homebrew/bin/brew shellenv)"	
+
   running "brew update + brew upgrade"
   # Make sure we’re using the latest Homebrew.
   brew update
@@ -46,18 +50,18 @@ if $brewinstall; then
   brew upgrade
   
   # Switch to using brew-installed bash as default shell
-  if ! fgrep -q '/usr/local/bin/bash' /etc/shells; then
-    echo '/usr/local/bin/bash' | sudo tee -a /etc/shells;
-    chsh -s /usr/local/bin/bash;
-  fi;
+#  if ! fgrep -q '/usr/local/bin/bash' /etc/shells; then
+#    echo '/usr/local/bin/bash' | sudo tee -a /etc/shells;
+#    chsh -s /usr/local/bin/bash;
+#  fi;
 
   running "Installing from BrewFile"
-  brew bundle install
+  brew bundle install --file brew/.brewfile
 
   
   # running "brew bundle cleanup"
   # Remove outdated versions from the cellar.
-  # brew  cleanup --file ../brew/Brewfile
+  # brew  cleanup --file brew/.brewfile
 
   # turn off prevent sleep.
   killall caffeinate
