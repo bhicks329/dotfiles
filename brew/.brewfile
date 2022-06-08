@@ -112,7 +112,7 @@ cask "zeplin"
 
 # DEV
 cask "dash"
-cask "google-chrome-canary"
+#cask "google-chrome-canary"
 cask "graphiql"
 cask "imagealpha"
 cask "imageoptim"
@@ -148,7 +148,7 @@ cask "qlvideo"
 cask "vagrant"
 brew "awscli"
 # brew "nginx"
-# brew "azure-cli" - Until the Python fix is implemented
+brew "azure-cli"
 brew "azure/functions/azure-functions-core-tools@3"
 brew "terraform"
 cask "powershell"
@@ -199,16 +199,16 @@ cask "github"
 
 # Chat and Meetings
 # cask "slack"
-cask "whatsapp-beta"
-cask "zoom"
-cask "microsoft-teams"
+#cask "whatsapp-beta"
+#cask "zoom"
+#cask "microsoft-teams"
 
 # Media Apps
 cask "farrago"
 cask "audio-hijack"
 cask "loopback"
 cask "soundsource"
-cask "spotify"
+#cask "spotify"
 cask "vlc"
 cask "obs"
 cask "obs-virtualcam"
@@ -222,7 +222,7 @@ mas "Microsoft PowerPoint", id: 462062816
 mas "Microsoft Outlook", id: 985367838
 mas "Microsoft OneNote", id:784801555
 mas "Fantastical - Calendar & Tasks", id: 975937182
-mas "Slack for Desktop", id: 803453959
+# mas "Slack for Desktop", id: 803453959
 mas "Parallels Desktop", id: 1085114709
 mas "Microsoft Remote Desktop", id: 1295203466
 mas "Moom", id: 419330170

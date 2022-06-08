@@ -43,12 +43,13 @@ mkdir -p "$migrationdir/Library/Application Support/"
 mkdir -p "$migrationdir/Library/Preferences/"
 mkdir -p "$migrationdir/rootLibrary/Preferences/SystemConfiguration/"
 
+
 success "Directories created."
 
 # Export lists of installed apps from brew, brew cask, npm and yarn.
 action "Exporting installed apps (brew/npm/yarn)"
 brew leaves > "$migrationdir/brew-list.txt" # all top-level brew installs
-brew cask list > "$migrationdir/cask-list.txt"
+brew list --cask > "$migrationdir/cask-list.txt"
 npm list -g --depth=0 > "$migrationdir/npm-g-list.txt"
 yarn global list --depth=0 > "$migrationdir/yarn-g-list.txt"
 
@@ -64,10 +65,12 @@ read -n 1
 # Copy files from major directories.
 cp -Rp "$HOME/Desktop" "$migrationdir"
 cp -Rp "$HOME/Documents" "$migrationdir"
-cp -Rp "$HOME/Downloads" "$migrationdir"
-cp -Rp "$HOME/code" "$migrationdir"
+#cp -Rp "$HOME/Downloads" "$migrationdir"
+#cp -Rp "$HOME/code" "$migrationdir"
 cp -Rp "$HOME/projects" "$migrationdir"
-cp -Rp "$HOME/Work" "$migrationdir"
+cp -Rp "$HOME/source" "$migrationdir"
+cp -Rp "$HOME/repos" "$migrationdir"
+
 
 # Suggest to user other files to handle.
 warn "Consider how to migrate your Applications."

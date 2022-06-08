@@ -100,3 +100,4 @@ fi
 if hash rbenv 2>/dev/null; then
   eval "$(rbenv init -)";
 fi
+export PATH="/usr/local/opt/node@16/bin:$PATH"
