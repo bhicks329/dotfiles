@@ -47,10 +47,10 @@ if vim n 2>/dev/null; then
 
   # Install bundle plugins (using pathogen)
   cd "$HOME/.vim/bundle"
-  git clone git://github.com/altercation/vim-colors-solarized.git # solarized
-  git clone git://github.com/tpope/vim-sensible.git # vim sensible
-  git clone git://github.com/scrooloose/nerdtree.git # nerdtree
-  git clone git://github.com/ctrlpvim/ctrlp.vim.git # ctrlp
+  git clone https://github.com/altercation/vim-colors-solarized.git # solarized
+  git clone https://github.com/tpope/vim-sensible.git # vim sensible
+  git clone https://github.com/scrooloose/nerdtree.git # nerdtree
+  git clone https://github.com/ctrlpvim/ctrlp.vim.git # ctrlp
   cd "$dotfilesdir"
 
   # fin.

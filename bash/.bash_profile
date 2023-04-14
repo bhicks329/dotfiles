@@ -43,7 +43,6 @@ shopt -s dirspell 2> /dev/null
 for option in autocd globstar; do
   shopt -s "$option" 2> /dev/null;
 done;
-
 [[ -r "$(brew --prefix)/etc/profile.d/bash_completion.sh" ]] && source "$(brew --prefix)/etc/profile.d/bash_completion.sh"
 
 # import homebrew bash-completions
@@ -85,7 +84,7 @@ zpath="$(brew --prefix)/etc/profile.d/z.sh"
 bind Space:magic-space
 
 # asdf
-source $(brew --prefix asdf)/asdf.sh
+#source $(brew --prefix asdf)/asdf.sh
 
 # pyevnv
 if hash pyenv 2>/dev/null; then
