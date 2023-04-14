@@ -5,6 +5,7 @@ tap "bramstein/webfonttools"
 tap "homebrew/cask-fonts"
 tap "homebrew/cask"
 tap "homebrew/cask-versions"
+tap "buo/cask-upgrade"
 # tap "mongodb/brew"
 
 
@@ -16,7 +17,7 @@ brew "gnu-sed"
 
 # TERMINALS
 brew "bash"
-brew "bash-completion2"
+brew "bash-completion@2"
 brew "zsh"
 brew "zsh-completion"
 
@@ -104,6 +105,8 @@ cask "keybase"
 cask "gpg-suite"
 brew "gnupg"
 brew "pinentry-mac"
+cask "1password"
+cask "1password-cli"
 
 # DESIGN
 cask "abstract"
@@ -175,7 +178,6 @@ brew "cmatrix"
 
 # GENERAL
 cask "caffeine"
-cask "diskwave"
 # cask "dropbox"
 cask "firefox"
 cask "g-desktop-suite"
@@ -195,11 +197,12 @@ cask "microsoft-azure-storage-explorer"
 cask "sublime-text"
 # cask "microsoft-remote-desktop"
 cask "github"
+cask "notion"
 # cask "parallels"
 
 # Chat and Meetings
 # cask "slack"
-#cask "whatsapp-beta"
+#cask "whatsapp-beta"\
 #cask "zoom"
 #cask "microsoft-teams"
 
@@ -208,13 +211,14 @@ cask "farrago"
 cask "audio-hijack"
 cask "loopback"
 cask "soundsource"
-#cask "spotify"
+cask "spotify"
 cask "vlc"
 cask "obs"
-cask "obs-virtualcam"
+# cask "obs-virtualcam"
+cask "elgato-stream-deck"
 
 # APP STORE
-mas "1Password", id: 1333542190
+# mas "1Password", id: 1333542190
 mas "Airmail", id: 918858936
 mas "Microsoft Word", id: 462054704
 mas "Microsoft Excel", id: 462058435
@@ -227,3 +231,4 @@ mas "Parallels Desktop", id: 1085114709
 mas "Microsoft Remote Desktop", id: 1295203466
 mas "Moom", id: 419330170
 mas "Todoist: To-Do List & Tasks", id: 585829637
+mas "Tot", id: 1491071483

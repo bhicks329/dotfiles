@@ -3,7 +3,7 @@
 # Load the shell dotfiles, and then some:
 # * ~/.path can be used to extend `$PATH`.
 # * ~/.extra can be used for other settings you don’t want to commit.
-for file in "$HOME/."{exports,path,aliases,functions,extra}; do
+for file in "$HOME/."{path,exports,aliases,functions,extra}; do
   [ -r "$file" ] && [ -f "$file" ] && source "$file";
 done;
 unset file;
@@ -49,7 +49,7 @@ done;
 # import homebrew bash-completions
 source $(brew --prefix asdf)/etc/bash_completion.d/asdf.bash
 source "$(brew --prefix)/etc/bash_completion.d/brew"
-source "$(brew --prefix)/etc/bash_completion.d/gibo-completion.bash"
+# source "$(brew --prefix)/etc/bash_completion.d/gibo-completion.bash"
 source "$(brew --prefix)/etc/bash_completion.d/git-completion.bash"
 
 # Enable tab completion for `g` by marking it as an alias for `git`.
@@ -85,7 +85,7 @@ zpath="$(brew --prefix)/etc/profile.d/z.sh"
 bind Space:magic-space
 
 # asdf
-source $(brew --prefix asdf)/asdf.sh
+#source $(brew --prefix asdf)/asdf.sh
 
 # pyevnv
 if hash pyenv 2>/dev/null; then

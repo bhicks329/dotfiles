@@ -34,7 +34,7 @@ alias v="vim"
 alias ungz="gunzip -k"
 
 alias where=which
-alias cask='brew cask'
+alias cask="brew cask"
 
 # Always use color output for `ls`
 if hash gls 2>/dev/null; then
