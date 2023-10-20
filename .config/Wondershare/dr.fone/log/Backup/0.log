@@ -1,0 +1,351 @@
+06/07/2023 15:13:18 Program.InitCustomize
+06/07/2023 15:13:19 InitDataBaseInfo Success
+06/07/2023 15:13:20 App Version :12.4.14.334
+06/07/2023 15:13:20 <USB DEBUG> start requesting...
+06/07/2023 15:13:20 InitApp End
+06/07/2023 15:13:20 <USB DEBUG> start parsing json...
+06/07/2023 15:13:20 <USB DEBUG> value compare: 1-1
+06/07/2023 15:13:21 ConnectionScanTask start
+06/07/2023 15:13:21 RegisterUSBDevicesNotify handle:140452073420080
+06/07/2023 15:13:21 MacUsbNotifier  StartMonitor start
+06/07/2023 15:13:21 MacUsbNotifier  StopMonitor
+06/07/2023 15:13:21 MacOS  StartMonitorWorker start
+06/07/2023 15:13:21 MacUsbNotifier  DoListen start
+06/07/2023 15:13:21 MacUsb DeviceConnectCallback 
+06/07/2023 15:13:21 ConnectionHub OnDeviceArrival:IOService:/AppleARMPE/arm-io/AppleT600xIO/usb-drd1@2280000/AppleT6000USBXHCI@01000000/usb-drd1-port-hs@01100000/USB2.0 Hub@01100000/AppleUSB20Hub@01100000/AppleUSB20HubPort@01110000/iPhone@01110000
+06/07/2023 15:13:21 AddUSBConnection deviceId: IOService:/AppleARMPE/arm-io/AppleT600xIO/usb-drd1@2280000/AppleT6000USBXHCI@01000000/usb-drd1-port-hs@01100000/USB2.0 Hub@01100000/AppleUSB20Hub@01100000/AppleUSB20HubPort@01110000/iPhone@01110000
+06/07/2023 15:13:21 ConnectionHub.FoundDevice
+06/07/2023 15:13:21 	Id=IOService:/AppleARMPE/arm-io/AppleT600xIO/usb-drd1@2280000/AppleT6000USBXHCI@01000000/usb-drd1-port-hs@01100000/USB2.0 Hub@01100000/AppleUSB20Hub@01100000/AppleUSB20HubPort@01110000/iPhone@01110000
+06/07/2023 15:13:21 	Manufacturer=Apple Inc.
+06/07/2023 15:13:21 	Product=iPhone
+06/07/2023 15:13:21 	FriendlyName=iPhone
+06/07/2023 15:13:21 	SN=de20a8e49763943d74f1c28722e44dfeae808c2f
+06/07/2023 15:13:21 	VID=1452
+06/07/2023 15:13:21 	PID=4756
+06/07/2023 15:13:21 	Class=0
+06/07/2023 15:13:21 	SubClass=0
+06/07/2023 15:13:21 	Protocol=0
+06/07/2023 15:13:21 AddUSBConnection VID:05ac PID:1294 Manufacturer:Apple Inc. Product:iPhone
+06/07/2023 15:13:21 MacOS  StartEnumeratorWorker start
+06/07/2023 15:13:21 MacOS  StartEnumeratorWorker while (!bExit) 
+06/07/2023 15:13:21 MacOS  StartEnumeratorWorker ScanMacUSB   
+06/07/2023 15:13:21 USBDeviceBaseInfo::GetDeviceInfo DeviceHistoryPath VID:05ac PID:1294 Manufacturer:Apple Inc. Product:iPhone
+06/07/2023 15:13:22 	Model=iPhone 3GS
+06/07/2023 15:13:22 	FriendlyName=Ali’s iPhone
+06/07/2023 15:13:22 ConnectionHub.AddConnection(IOService:/AppleARMPE/arm-io/AppleT600xIO/usb-drd1@2280000/AppleT6000USBXHCI@01000000/usb-drd1-port-hs@01100000/USB2.0 Hub@01100000/AppleUSB20Hub@01100000/AppleUSB20HubPort@01110000/iPhone@01110000, iOS, de20a8e49763943d74f1c28722e44dfeae808c2f)
+06/07/2023 15:13:22 Connection inserter Start
+06/07/2023 15:13:22 Connection inserter create new device
+06/07/2023 15:13:22 Connection inserter device is iOS
+06/07/2023 15:13:22 Connection inserter AddService
+06/07/2023 15:13:22 Device manager add device SerialNumber: de20a8e49763943d74f1c28722e44dfeae808c2f
+06/07/2023 15:13:22 ConnectionHub OnDeviceArrival:IOService:/AppleARMPE/arm-io/AppleT600xIO/usb-drd1@2280000/AppleT6000USBXHCI@01000000/usb-drd1-port-hs@01100000/USB2.0 Hub@01100000/AppleUSB20Hub@01100000/AppleUSB20HubPort@01120000/USB-C Digital AV Multiport Adapter@01120000
+06/07/2023 15:13:22 AddUSBConnection deviceId: IOService:/AppleARMPE/arm-io/AppleT600xIO/usb-drd1@2280000/AppleT6000USBXHCI@01000000/usb-drd1-port-hs@01100000/USB2.0 Hub@01100000/AppleUSB20Hub@01100000/AppleUSB20HubPort@01120000/USB-C Digital AV Multiport Adapter@01120000
+06/07/2023 15:13:22 ConnectionHub.FoundDevice
+06/07/2023 15:13:22 	Id=IOService:/AppleARMPE/arm-io/AppleT600xIO/usb-drd1@2280000/AppleT6000USBXHCI@01000000/usb-drd1-port-hs@01100000/USB2.0 Hub@01100000/AppleUSB20Hub@01100000/AppleUSB20HubPort@01120000/USB-C Digital AV Multiport Adapter@01120000
+06/07/2023 15:13:22 	Manufacturer=Apple Inc.
+06/07/2023 15:13:22 	Product=USB-C Digital AV Multiport Adapter
+06/07/2023 15:13:22 	FriendlyName=USB-C Digital AV Multiport Adapter
+06/07/2023 15:13:22 	SN=DLC749603FRG2KQAX
+06/07/2023 15:13:22 	VID=1452
+06/07/2023 15:13:22 	PID=5216
+06/07/2023 15:13:22 	Class=17
+06/07/2023 15:13:22 	SubClass=0
+06/07/2023 15:13:22 	Protocol=0
+06/07/2023 15:13:22 AddUSBConnection VID:05ac PID:1460 Manufacturer:Apple Inc. Product:USB-C Digital AV Multiport Adapter
+06/07/2023 15:13:22 USBDeviceBaseInfo::CreateUnknownBaseInfo VID:05ac PID:1460 Manufacturer:Apple Inc. Product:USB-C Digital AV Multiport Adapter
+06/07/2023 15:13:22 	Manufacturer=Apple
+06/07/2023 15:13:22 	FriendlyName=
+06/07/2023 15:13:22 MacOS  StartEnumeratorWorker bFisrtScan end.
+06/07/2023 15:13:22 ConnectionHub OnDeviceArrival:IOService:/AppleARMPE/arm-io/AppleT600xIO/apciec2@30000000/AppleT6000PCIeC/pcic2-bridge@0/IOPP/pci-bridge@0/IOPP/pci-bridge@1/IOPP/pci1b73,1100@0/AppleUSBXHCIFL1100@03000000/AppleUSB20XHCIPort@03200000/USB2.1 Hub@03200000/AppleUSB20Hub@03200000/AppleUSB20HubPort@03240000/USB2.1 Hub@03240000/AppleUSB20Hub@03240000/AppleUSB20HubPort@03243000/Stream Deck MK.2@03243000
+06/07/2023 15:13:22 AddUSBConnection deviceId: IOService:/AppleARMPE/arm-io/AppleT600xIO/apciec2@30000000/AppleT6000PCIeC/pcic2-bridge@0/IOPP/pci-bridge@0/IOPP/pci-bridge@1/IOPP/pci1b73,1100@0/AppleUSBXHCIFL1100@03000000/AppleUSB20XHCIPort@03200000/USB2.1 Hub@03200000/AppleUSB20Hub@03200000/AppleUSB20HubPort@03240000/USB2.1 Hub@03240000/AppleUSB20Hub@03240000/AppleUSB20HubPort@03243000/Stream Deck MK.2@03243000
+06/07/2023 15:13:22 ConnectionHub.FoundDevice
+06/07/2023 15:13:22 	Id=IOService:/AppleARMPE/arm-io/AppleT600xIO/apciec2@30000000/AppleT6000PCIeC/pcic2-bridge@0/IOPP/pci-bridge@0/IOPP/pci-bridge@1/IOPP/pci1b73,1100@0/AppleUSBXHCIFL1100@03000000/AppleUSB20XHCIPort@03200000/USB2.1 Hub@03200000/AppleUSB20Hub@03200000/AppleUSB20HubPort@03240000/USB2.1 Hub@03240000/AppleUSB20Hub@03240000/AppleUSB20HubPort@03243000/Stream Deck MK.2@03243000
+06/07/2023 15:13:22 	Manufacturer=Elgato
+06/07/2023 15:13:22 	Product=Stream Deck MK.2
+06/07/2023 15:13:22 	FriendlyName=Stream Deck MK.2
+06/07/2023 15:13:22 	SN=DL29L2A36027
+06/07/2023 15:13:22 	VID=4057
+06/07/2023 15:13:22 	PID=128
+06/07/2023 15:13:22 	Class=0
+06/07/2023 15:13:22 	SubClass=0
+06/07/2023 15:13:22 	Protocol=0
+06/07/2023 15:13:22 AddUSBConnection VID:0fd9 PID:0080 Manufacturer:Elgato Product:Stream Deck MK.2
+06/07/2023 15:13:22 USBDeviceBaseInfo::CreateUnknownBaseInfo VID:0fd9 PID:0080 Manufacturer:Elgato Product:Stream Deck MK.2
+06/07/2023 15:13:22 	FriendlyName=
+06/07/2023 15:13:22 ConnectionScanTask End
+06/07/2023 15:13:22 MacUsb DeviceDisconnectCallback 
+06/07/2023 15:13:22 AddUSBConnection deviceId: de20a8e49763943d74f1c28722e44dfeae808c2f
+06/07/2023 15:13:22 ConnectionHub.FoundDevice
+06/07/2023 15:13:22 	Id=de20a8e49763943d74f1c28722e44dfeae808c2f
+06/07/2023 15:13:22 	VID=0
+06/07/2023 15:13:22 	PID=0
+06/07/2023 15:13:22 	Class=0
+06/07/2023 15:13:22 	SubClass=0
+06/07/2023 15:13:22 	Protocol=0
+06/07/2023 15:13:22 Ignored!
+06/07/2023 15:13:22 AddUSBConnection deviceId: DLC749603FRG2KQAX
+06/07/2023 15:13:22 AddUSBConnection deviceId: DL29L2A36027
+06/07/2023 15:13:22 ConnectionHub.RemoveConnection(IOService:/AppleARMPE/arm-io/AppleT600xIO/usb-drd1@2280000/AppleT6000USBXHCI@01000000/usb-drd1-port-hs@01100000/USB2.0 Hub@01100000/AppleUSB20Hub@01100000/AppleUSB20HubPort@01110000/iPhone@01110000, de20a8e49763943d74f1c28722e44dfeae808c2f)
+06/07/2023 15:13:23 start connectAli’s iPhone
+06/07/2023 15:13:23 Connection begin IOService:/AppleARMPE/arm-io/AppleT600xIO/usb-drd1@2280000/AppleT6000USBXHCI@01000000/usb-drd1-port-hs@01100000/USB2.0 Hub@01100000/AppleUSB20Hub@01100000/AppleUSB20HubPort@01110000/iPhone@01110000
+06/07/2023 15:13:23 [DC_UsbTask] try connect, Times: 1
+06/07/2023 15:13:23 [DC_IOSCOT] Initialize ios start.
+06/07/2023 15:13:23 [DC_Listener] DoCheckService result: True
+06/07/2023 15:13:23 [DC_IOSCOT] Initialize, ios service running
+06/07/2023 15:13:23 Connection step Checking
+06/07/2023 15:13:23 [DC_UsbTask] start wait system installing.
+06/07/2023 15:13:23 ......device_ConnectStepChanged Step: Checking
+06/07/2023 15:13:23 [DC_UsbTask] end wait system installing.
+06/07/2023 15:13:23 [DC_UsbTask] start wait FindExpectInterface
+06/07/2023 15:13:24 [DC_UsbTask] end wait FindExpectInterface.
+06/07/2023 15:13:24 [DC_UsbTask] start PrepareCheck.
+06/07/2023 15:13:24 [DC_UsbTask] end PrepareCheck.
+06/07/2023 15:13:24 [DC_UsbTask] start GetConnectTask
+06/07/2023 15:13:24 [DC-BSCOT] BC-DoConnection enter..
+06/07/2023 15:13:24 [DC-BSCOT] BC-GetWaitReadyTask skip..
+06/07/2023 15:13:24 [DC-BSCOT] BC-GetWaitReadyTask enter..
+06/07/2023 15:13:24 [DC-BSCOT] BC-WaitReadyWorker enter..
+06/07/2023 15:13:24 Connection step WaitReady
+06/07/2023 15:13:24 ......device_ConnectStepChanged Step: WaitReady
+06/07/2023 15:13:24 [DC_IOSCOT]DoWaitReady Start
+06/07/2023 15:13:24 [DC_IOSCOT] DoWaitReady before WaitDriverInstallDone
+06/07/2023 15:13:24 [DC_IOSCOT] DoWaitReady End WaitDriverInstallDone
+06/07/2023 15:13:24 [DC_IOSCOT] DoWaitReady before InitService
+06/07/2023 15:13:24 [DC_IOSCOT]InitService began
+06/07/2023 15:13:24 [DC_IOSCOT] Initialize ios start.
+06/07/2023 15:13:24 [DC_Listener] DoCheckService result: True
+06/07/2023 15:13:24 [DC_IOSCOT] Initialize, ios service running
+06/07/2023 15:13:24 [DC_IOSCOT] DoWaitReady end InitService
+06/07/2023 15:13:24 [DC_IOSCOT] start listen and wait.
+06/07/2023 15:13:24 [DC_IOSCOT] wait ready STEP_1
+06/07/2023 15:13:24 [DC_IOSCOT] service_listen: True
+06/07/2023 15:13:24 [DC_IOSCOT] wait ready STEP_2
+06/07/2023 15:13:24 =============TLSv1_method=================
+06/07/2023 15:13:24 =============TLSv1_1_method=============
+06/07/2023 15:13:24 =============TLSv1_2_method=============
+06/07/2023 15:13:24 =============TLSv1_method=================
+06/07/2023 15:13:24 =============TLSv1_1_method=============
+06/07/2023 15:13:24 =============TLSv1_2_method=============
+06/07/2023 15:13:24 Service  Send Error System.Net.Sockets.SocketException (0x80004005): The socket has been shut down
+  at System.Net.Sockets.Socket.Send (System.Byte[] buffer, System.Int32 offset, System.Int32 size, System.Net.Sockets.SocketFlags socketFlags) [0x00016] in <cea77d7bab8b472da697a3b6e78ef65f>:0 
+  at WMM.Device.IOS.SslSocketStream.Write (System.Byte[] buffer, System.Int32 offset, System.Int32 count) [0x00048] in <f006731261df48db8f2d6d0dbf9a1802>:0 
+  at WMM.Device.IOS.Protocols.AppleSocket.FixSizeSend (System.Byte[] buffer, System.Int32 offset, System.Int32 count, System.Int32 timeout) [0x00029] in <f006731261df48db8f2d6d0dbf9a1802>:0 
+06/07/2023 15:13:24 [DC_Listener] NotificationWaitHandles wait event: de20a8e49763943d74f1c28722e44dfeae808c2f
+06/07/2023 15:13:24 [DC_IOSCOT] wait_device: True
+06/07/2023 15:13:24 [DC_IOSCOT] listen and wait both ok.
+06/07/2023 15:13:24 [DC_IOSCOT]InitService began
+06/07/2023 15:13:24 [DC_IOSCOT] Initialize ios start.
+06/07/2023 15:13:24 [DC_Listener] DoCheckService result: True
+06/07/2023 15:13:24 [DC_IOSCOT] Initialize, ios service running
+06/07/2023 15:13:24 [DC_IOSCOT]DoWaitReady End DeviceListener 
+06/07/2023 15:13:24 [DC_IOSCOT] start WaitReady Task
+06/07/2023 15:13:24 WaitReadyTask start
+06/07/2023 15:13:24 WaitReadyState AllReady
+06/07/2023 15:13:24 Before WaitReady
+06/07/2023 15:13:24 Start WaitReady
+06/07/2023 15:13:24 Before HavePairedRecord
+06/07/2023 15:13:24 After HavePairedRecord
+06/07/2023 15:13:24 =============TLSv1_method=================
+06/07/2023 15:13:24 =============TLSv1_1_method=============
+06/07/2023 15:13:24 =============TLSv1_2_method=============
+06/07/2023 15:13:24 =============TLSv1_method=================
+06/07/2023 15:13:24 =============TLSv1_1_method=============
+06/07/2023 15:13:24 =============TLSv1_2_method=============
+06/07/2023 15:13:24 Service  Send Error System.Net.Sockets.SocketException (0x80004005): The socket has been shut down
+  at System.Net.Sockets.Socket.Send (System.Byte[] buffer, System.Int32 offset, System.Int32 size, System.Net.Sockets.SocketFlags socketFlags) [0x00016] in <cea77d7bab8b472da697a3b6e78ef65f>:0 
+  at WMM.Device.IOS.SslSocketStream.Write (System.Byte[] buffer, System.Int32 offset, System.Int32 count) [0x00048] in <f006731261df48db8f2d6d0dbf9a1802>:0 
+  at WMM.Device.IOS.Protocols.AppleSocket.FixSizeSend (System.Byte[] buffer, System.Int32 offset, System.Int32 count, System.Int32 timeout) [0x00029] in <f006731261df48db8f2d6d0dbf9a1802>:0 
+06/07/2023 15:13:24 Before ValidatePair
+06/07/2023 15:13:24 After ValidatePair
+06/07/2023 15:13:24 =============TLSv1_method=================
+06/07/2023 15:13:24 =============TLSv1_1_method=============
+06/07/2023 15:13:24 =============TLSv1_2_method=============
+06/07/2023 15:13:24 =============TLSv1_method=================
+06/07/2023 15:13:24 =============TLSv1_1_method=============
+06/07/2023 15:13:24 =============TLSv1_2_method=============
+06/07/2023 15:13:24 Service  Send Error System.Net.Sockets.SocketException (0x80004005): The socket has been shut down
+  at System.Net.Sockets.Socket.Send (System.Byte[] buffer, System.Int32 offset, System.Int32 size, System.Net.Sockets.SocketFlags socketFlags) [0x00016] in <cea77d7bab8b472da697a3b6e78ef65f>:0 
+  at WMM.Device.IOS.SslSocketStream.Write (System.Byte[] buffer, System.Int32 offset, System.Int32 count) [0x00048] in <f006731261df48db8f2d6d0dbf9a1802>:0 
+  at WMM.Device.IOS.Protocols.AppleSocket.FixSizeSend (System.Byte[] buffer, System.Int32 offset, System.Int32 count, System.Int32 timeout) [0x00029] in <f006731261df48db8f2d6d0dbf9a1802>:0 
+06/07/2023 15:13:24 =============TLSv1_method=================
+06/07/2023 15:13:24 =============TLSv1_1_method=============
+06/07/2023 15:13:24 =============TLSv1_2_method=============
+06/07/2023 15:13:24 =============TLSv1_method=================
+06/07/2023 15:13:24 =============TLSv1_1_method=============
+06/07/2023 15:13:24 =============TLSv1_2_method=============
+06/07/2023 15:13:24 Service  Send Error System.Net.Sockets.SocketException (0x80004005): The socket has been shut down
+  at System.Net.Sockets.Socket.Send (System.Byte[] buffer, System.Int32 offset, System.Int32 size, System.Net.Sockets.SocketFlags socketFlags) [0x00016] in <cea77d7bab8b472da697a3b6e78ef65f>:0 
+  at WMM.Device.IOS.SslSocketStream.Write (System.Byte[] buffer, System.Int32 offset, System.Int32 count) [0x00048] in <f006731261df48db8f2d6d0dbf9a1802>:0 
+  at WMM.Device.IOS.Protocols.AppleSocket.FixSizeSend (System.Byte[] buffer, System.Int32 offset, System.Int32 count, System.Int32 timeout) [0x00029] in <f006731261df48db8f2d6d0dbf9a1802>:0 
+06/07/2023 15:13:24 Before WaitPaired
+06/07/2023 15:13:24 Start DoPair
+06/07/2023 15:13:24 End DoPair CheckAuthStatus OK
+06/07/2023 15:13:24 After WaitPaired Success
+06/07/2023 15:13:24 Connection step Ready
+06/07/2023 15:13:24 ......device_ConnectStepChanged Step: Ready
+06/07/2023 15:13:24 ......device_ConnectStepChanged Step: Ready
+06/07/2023 15:13:24 =============TLSv1_method=================
+06/07/2023 15:13:24 =============TLSv1_1_method=============
+06/07/2023 15:13:24 =============TLSv1_2_method=============
+06/07/2023 15:13:24 =============TLSv1_method=================
+06/07/2023 15:13:24 =============TLSv1_1_method=============
+06/07/2023 15:13:24 =============TLSv1_2_method=============
+06/07/2023 15:13:24 Service  Send Error System.Net.Sockets.SocketException (0x80004005): The socket has been shut down
+  at System.Net.Sockets.Socket.Send (System.Byte[] buffer, System.Int32 offset, System.Int32 size, System.Net.Sockets.SocketFlags socketFlags) [0x00016] in <cea77d7bab8b472da697a3b6e78ef65f>:0 
+  at WMM.Device.IOS.SslSocketStream.Write (System.Byte[] buffer, System.Int32 offset, System.Int32 count) [0x00048] in <f006731261df48db8f2d6d0dbf9a1802>:0 
+  at WMM.Device.IOS.Protocols.AppleSocket.FixSizeSend (System.Byte[] buffer, System.Int32 offset, System.Int32 count, System.Int32 timeout) [0x00029] in <f006731261df48db8f2d6d0dbf9a1802>:0 
+06/07/2023 15:13:24 =============TLSv1_method=================
+06/07/2023 15:13:24 =============TLSv1_1_method=============
+06/07/2023 15:13:24 =============TLSv1_2_method=============
+06/07/2023 15:13:24 =============TLSv1_method=================
+06/07/2023 15:13:24 =============TLSv1_1_method=============
+06/07/2023 15:13:24 =============TLSv1_2_method=============
+06/07/2023 15:13:24 Service  Send Error System.Net.Sockets.SocketException (0x80004005): The socket has been shut down
+  at System.Net.Sockets.Socket.Send (System.Byte[] buffer, System.Int32 offset, System.Int32 size, System.Net.Sockets.SocketFlags socketFlags) [0x00016] in <cea77d7bab8b472da697a3b6e78ef65f>:0 
+  at WMM.Device.IOS.SslSocketStream.Write (System.Byte[] buffer, System.Int32 offset, System.Int32 count) [0x00048] in <f006731261df48db8f2d6d0dbf9a1802>:0 
+  at WMM.Device.IOS.Protocols.AppleSocket.FixSizeSend (System.Byte[] buffer, System.Int32 offset, System.Int32 count, System.Int32 timeout) [0x00029] in <f006731261df48db8f2d6d0dbf9a1802>:0 
+06/07/2023 15:13:24 =============TLSv1_method=================
+06/07/2023 15:13:24 =============TLSv1_1_method=============
+06/07/2023 15:13:24 =============TLSv1_2_method=============
+06/07/2023 15:13:24 =============TLSv1_method=================
+06/07/2023 15:13:24 =============TLSv1_1_method=============
+06/07/2023 15:13:24 =============TLSv1_2_method=============
+06/07/2023 15:13:24 Service  Send Error System.Net.Sockets.SocketException (0x80004005): The socket has been shut down
+  at System.Net.Sockets.Socket.Send (System.Byte[] buffer, System.Int32 offset, System.Int32 size, System.Net.Sockets.SocketFlags socketFlags) [0x00016] in <cea77d7bab8b472da697a3b6e78ef65f>:0 
+  at WMM.Device.IOS.SslSocketStream.Write (System.Byte[] buffer, System.Int32 offset, System.Int32 count) [0x00048] in <f006731261df48db8f2d6d0dbf9a1802>:0 
+  at WMM.Device.IOS.Protocols.AppleSocket.FixSizeSend (System.Byte[] buffer, System.Int32 offset, System.Int32 count, System.Int32 timeout) [0x00029] in <f006731261df48db8f2d6d0dbf9a1802>:0 
+06/07/2023 15:13:24 =============TLSv1_method=================
+06/07/2023 15:13:24 =============TLSv1_1_method=============
+06/07/2023 15:13:24 =============TLSv1_2_method=============
+06/07/2023 15:13:24 =============TLSv1_method=================
+06/07/2023 15:13:24 =============TLSv1_1_method=============
+06/07/2023 15:13:24 =============TLSv1_2_method=============
+06/07/2023 15:13:24 Service  Send Error System.Net.Sockets.SocketException (0x80004005): The socket has been shut down
+  at System.Net.Sockets.Socket.Send (System.Byte[] buffer, System.Int32 offset, System.Int32 size, System.Net.Sockets.SocketFlags socketFlags) [0x00016] in <cea77d7bab8b472da697a3b6e78ef65f>:0 
+  at WMM.Device.IOS.SslSocketStream.Write (System.Byte[] buffer, System.Int32 offset, System.Int32 count) [0x00048] in <f006731261df48db8f2d6d0dbf9a1802>:0 
+  at WMM.Device.IOS.Protocols.AppleSocket.FixSizeSend (System.Byte[] buffer, System.Int32 offset, System.Int32 count, System.Int32 timeout) [0x00029] in <f006731261df48db8f2d6d0dbf9a1802>:0 
+06/07/2023 15:13:24 =============TLSv1_method=================
+06/07/2023 15:13:24 =============TLSv1_1_method=============
+06/07/2023 15:13:24 =============TLSv1_2_method=============
+06/07/2023 15:13:24 =============TLSv1_method=================
+06/07/2023 15:13:24 =============TLSv1_1_method=============
+06/07/2023 15:13:24 =============TLSv1_2_method=============
+06/07/2023 15:13:24 Service  Send Error System.Net.Sockets.SocketException (0x80004005): The socket has been shut down
+  at System.Net.Sockets.Socket.Send (System.Byte[] buffer, System.Int32 offset, System.Int32 size, System.Net.Sockets.SocketFlags socketFlags) [0x00016] in <cea77d7bab8b472da697a3b6e78ef65f>:0 
+  at WMM.Device.IOS.SslSocketStream.Write (System.Byte[] buffer, System.Int32 offset, System.Int32 count) [0x00048] in <f006731261df48db8f2d6d0dbf9a1802>:0 
+  at WMM.Device.IOS.Protocols.AppleSocket.FixSizeSend (System.Byte[] buffer, System.Int32 offset, System.Int32 count, System.Int32 timeout) [0x00029] in <f006731261df48db8f2d6d0dbf9a1802>:0 
+06/07/2023 15:13:24 =============TLSv1_method=================
+06/07/2023 15:13:24 =============TLSv1_1_method=============
+06/07/2023 15:13:24 =============TLSv1_2_method=============
+06/07/2023 15:13:24 =============TLSv1_method=================
+06/07/2023 15:13:24 =============TLSv1_1_method=============
+06/07/2023 15:13:24 =============TLSv1_2_method=============
+06/07/2023 15:13:24 Service  Send Error System.Net.Sockets.SocketException (0x80004005): The socket has been shut down
+  at System.Net.Sockets.Socket.Send (System.Byte[] buffer, System.Int32 offset, System.Int32 size, System.Net.Sockets.SocketFlags socketFlags) [0x00016] in <cea77d7bab8b472da697a3b6e78ef65f>:0 
+  at WMM.Device.IOS.SslSocketStream.Write (System.Byte[] buffer, System.Int32 offset, System.Int32 count) [0x00048] in <f006731261df48db8f2d6d0dbf9a1802>:0 
+  at WMM.Device.IOS.Protocols.AppleSocket.FixSizeSend (System.Byte[] buffer, System.Int32 offset, System.Int32 count, System.Int32 timeout) [0x00029] in <f006731261df48db8f2d6d0dbf9a1802>:0 
+06/07/2023 15:13:24 =============TLSv1_method=================
+06/07/2023 15:13:24 =============TLSv1_1_method=============
+06/07/2023 15:13:24 =============TLSv1_2_method=============
+06/07/2023 15:13:24 =============TLSv1_method=================
+06/07/2023 15:13:24 =============TLSv1_1_method=============
+06/07/2023 15:13:24 =============TLSv1_2_method=============
+06/07/2023 15:13:24 Service  Send Error System.Net.Sockets.SocketException (0x80004005): The socket has been shut down
+  at System.Net.Sockets.Socket.Send (System.Byte[] buffer, System.Int32 offset, System.Int32 size, System.Net.Sockets.SocketFlags socketFlags) [0x00016] in <cea77d7bab8b472da697a3b6e78ef65f>:0 
+  at WMM.Device.IOS.SslSocketStream.Write (System.Byte[] buffer, System.Int32 offset, System.Int32 count) [0x00048] in <f006731261df48db8f2d6d0dbf9a1802>:0 
+  at WMM.Device.IOS.Protocols.AppleSocket.FixSizeSend (System.Byte[] buffer, System.Int32 offset, System.Int32 count, System.Int32 timeout) [0x00029] in <f006731261df48db8f2d6d0dbf9a1802>:0 
+06/07/2023 15:13:24 =============TLSv1_method=================
+06/07/2023 15:13:24 =============TLSv1_1_method=============
+06/07/2023 15:13:24 =============TLSv1_2_method=============
+06/07/2023 15:13:24 =============TLSv1_method=================
+06/07/2023 15:13:24 =============TLSv1_1_method=============
+06/07/2023 15:13:24 =============TLSv1_2_method=============
+06/07/2023 15:13:24 Service  Send Error System.Net.Sockets.SocketException (0x80004005): The socket has been shut down
+  at System.Net.Sockets.Socket.Send (System.Byte[] buffer, System.Int32 offset, System.Int32 size, System.Net.Sockets.SocketFlags socketFlags) [0x00016] in <cea77d7bab8b472da697a3b6e78ef65f>:0 
+  at WMM.Device.IOS.SslSocketStream.Write (System.Byte[] buffer, System.Int32 offset, System.Int32 count) [0x00048] in <f006731261df48db8f2d6d0dbf9a1802>:0 
+  at WMM.Device.IOS.Protocols.AppleSocket.FixSizeSend (System.Byte[] buffer, System.Int32 offset, System.Int32 count, System.Int32 timeout) [0x00029] in <f006731261df48db8f2d6d0dbf9a1802>:0 
+06/07/2023 15:13:24 =============TLSv1_method=================
+06/07/2023 15:13:24 =============TLSv1_1_method=============
+06/07/2023 15:13:24 =============TLSv1_2_method=============
+06/07/2023 15:13:24 =============TLSv1_method=================
+06/07/2023 15:13:24 =============TLSv1_1_method=============
+06/07/2023 15:13:24 =============TLSv1_2_method=============
+06/07/2023 15:13:24 Service  Send Error System.Net.Sockets.SocketException (0x80004005): The socket has been shut down
+  at System.Net.Sockets.Socket.Send (System.Byte[] buffer, System.Int32 offset, System.Int32 size, System.Net.Sockets.SocketFlags socketFlags) [0x00016] in <cea77d7bab8b472da697a3b6e78ef65f>:0 
+  at WMM.Device.IOS.SslSocketStream.Write (System.Byte[] buffer, System.Int32 offset, System.Int32 count) [0x00048] in <f006731261df48db8f2d6d0dbf9a1802>:0 
+  at WMM.Device.IOS.Protocols.AppleSocket.FixSizeSend (System.Byte[] buffer, System.Int32 offset, System.Int32 count, System.Int32 timeout) [0x00029] in <f006731261df48db8f2d6d0dbf9a1802>:0 
+06/07/2023 15:13:24 =============TLSv1_method=================
+06/07/2023 15:13:24 =============TLSv1_1_method=============
+06/07/2023 15:13:24 =============TLSv1_2_method=============
+06/07/2023 15:13:24 =============TLSv1_method=================
+06/07/2023 15:13:24 =============TLSv1_1_method=============
+06/07/2023 15:13:24 =============TLSv1_2_method=============
+06/07/2023 15:13:24 Service  Send Error System.Net.Sockets.SocketException (0x80004005): The socket has been shut down
+  at System.Net.Sockets.Socket.Send (System.Byte[] buffer, System.Int32 offset, System.Int32 size, System.Net.Sockets.SocketFlags socketFlags) [0x00016] in <cea77d7bab8b472da697a3b6e78ef65f>:0 
+  at WMM.Device.IOS.SslSocketStream.Write (System.Byte[] buffer, System.Int32 offset, System.Int32 count) [0x00048] in <f006731261df48db8f2d6d0dbf9a1802>:0 
+  at WMM.Device.IOS.Protocols.AppleSocket.FixSizeSend (System.Byte[] buffer, System.Int32 offset, System.Int32 count, System.Int32 timeout) [0x00029] in <f006731261df48db8f2d6d0dbf9a1802>:0 
+06/07/2023 15:13:25 =============TLSv1_method=================
+06/07/2023 15:13:25 =============TLSv1_1_method=============
+06/07/2023 15:13:25 =============TLSv1_2_method=============
+06/07/2023 15:13:25 =============TLSv1_method=================
+06/07/2023 15:13:25 =============TLSv1_1_method=============
+06/07/2023 15:13:25 =============TLSv1_2_method=============
+06/07/2023 15:13:25 Service  Send Error System.Net.Sockets.SocketException (0x80004005): The socket has been shut down
+  at System.Net.Sockets.Socket.Send (System.Byte[] buffer, System.Int32 offset, System.Int32 size, System.Net.Sockets.SocketFlags socketFlags) [0x00016] in <cea77d7bab8b472da697a3b6e78ef65f>:0 
+  at WMM.Device.IOS.SslSocketStream.Write (System.Byte[] buffer, System.Int32 offset, System.Int32 count) [0x00048] in <f006731261df48db8f2d6d0dbf9a1802>:0 
+  at WMM.Device.IOS.Protocols.AppleSocket.FixSizeSend (System.Byte[] buffer, System.Int32 offset, System.Int32 count, System.Int32 timeout) [0x00029] in <f006731261df48db8f2d6d0dbf9a1802>:0 
+06/07/2023 15:13:25 [DC_IOSCOT]DoWaitReady End
+06/07/2023 15:13:25 [DC-BSCOT] BC-GetWaitReadyTask result: Online
+06/07/2023 15:13:25 Connection step StartSession
+06/07/2023 15:13:25 ......device_ConnectStepChanged Step: StartSession
+06/07/2023 15:13:25 =============TLSv1_method=================
+06/07/2023 15:13:25 =============TLSv1_1_method=============
+06/07/2023 15:13:25 =============TLSv1_2_method=============
+06/07/2023 15:13:25 =============TLSv1_method=================
+06/07/2023 15:13:25 =============TLSv1_1_method=============
+06/07/2023 15:13:25 =============TLSv1_2_method=============
+06/07/2023 15:13:25 Connection step LoadInfo
+06/07/2023 15:13:25 ......device_ConnectStepChanged Step: LoadInfo
+06/07/2023 15:13:25 ......device_ConnectStepChanged Step: LoadInfo
+06/07/2023 15:13:25 =============TLSv1_method=================
+06/07/2023 15:13:25 =============TLSv1_1_method=============
+06/07/2023 15:13:25 =============TLSv1_2_method=============
+06/07/2023 15:13:25 =============TLSv1_method=================
+06/07/2023 15:13:25 =============TLSv1_1_method=============
+06/07/2023 15:13:25 =============TLSv1_2_method=============
+06/07/2023 15:13:25 Service  Send Error System.Net.Sockets.SocketException (0x80004005): The socket has been shut down
+  at System.Net.Sockets.Socket.Send (System.Byte[] buffer, System.Int32 offset, System.Int32 size, System.Net.Sockets.SocketFlags socketFlags) [0x00016] in <cea77d7bab8b472da697a3b6e78ef65f>:0 
+  at WMM.Device.IOS.SslSocketStream.Write (System.Byte[] buffer, System.Int32 offset, System.Int32 count) [0x00048] in <f006731261df48db8f2d6d0dbf9a1802>:0 
+  at WMM.Device.IOS.Protocols.AppleSocket.FixSizeSend (System.Byte[] buffer, System.Int32 offset, System.Int32 count, System.Int32 timeout) [0x00029] in <f006731261df48db8f2d6d0dbf9a1802>:0 
+06/07/2023 15:13:25 =============TLSv1_method=================
+06/07/2023 15:13:25 =============TLSv1_1_method=============
+06/07/2023 15:13:25 =============TLSv1_2_method=============
+06/07/2023 15:13:25 =============TLSv1_method=================
+06/07/2023 15:13:25 =============TLSv1_1_method=============
+06/07/2023 15:13:25 =============TLSv1_2_method=============
+06/07/2023 15:13:25 Service  Send Error System.Net.Sockets.SocketException (0x80004005): The socket has been shut down
+  at System.Net.Sockets.Socket.Send (System.Byte[] buffer, System.Int32 offset, System.Int32 size, System.Net.Sockets.SocketFlags socketFlags) [0x00016] in <cea77d7bab8b472da697a3b6e78ef65f>:0 
+  at WMM.Device.IOS.SslSocketStream.Write (System.Byte[] buffer, System.Int32 offset, System.Int32 count) [0x00048] in <f006731261df48db8f2d6d0dbf9a1802>:0 
+  at WMM.Device.IOS.Protocols.AppleSocket.FixSizeSend (System.Byte[] buffer, System.Int32 offset, System.Int32 count, System.Int32 timeout) [0x00029] in <f006731261df48db8f2d6d0dbf9a1802>:0 
+06/07/2023 15:13:25 LoadDeviceInfo Error
+06/07/2023 15:13:25 Connection step StartSession
+06/07/2023 15:13:25 ......device_ConnectStepChanged Step: StartSession
+06/07/2023 15:13:25 [DC_UsbTask] end GetConnectTask : False
+06/07/2023 15:13:25 Connection end IOService:/AppleARMPE/arm-io/AppleT600xIO/usb-drd1@2280000/AppleT6000USBXHCI@01000000/usb-drd1-port-hs@01100000/USB2.0 Hub@01100000/AppleUSB20Hub@01100000/AppleUSB20HubPort@01110000/iPhone@01110000 Ready
+06/07/2023 15:13:25 Ready
+06/07/2023 15:13:25 device statusFalse
+06/07/2023 15:13:25 =============TLSv1_method=================
+06/07/2023 15:13:25 =============TLSv1_1_method=============
+06/07/2023 15:13:25 =============TLSv1_2_method=============
+06/07/2023 15:13:25 =============TLSv1_method=================
+06/07/2023 15:13:25 =============TLSv1_1_method=============
+06/07/2023 15:13:25 =============TLSv1_2_method=============
+06/07/2023 15:13:25 Service  Send Error System.Net.Sockets.SocketException (0x80004005): The socket has been shut down
+  at System.Net.Sockets.Socket.Send (System.Byte[] buffer, System.Int32 offset, System.Int32 size, System.Net.Sockets.SocketFlags socketFlags) [0x00016] in <cea77d7bab8b472da697a3b6e78ef65f>:0 
+  at WMM.Device.IOS.SslSocketStream.Write (System.Byte[] buffer, System.Int32 offset, System.Int32 count) [0x00048] in <f006731261df48db8f2d6d0dbf9a1802>:0 
+  at WMM.Device.IOS.Protocols.AppleSocket.FixSizeSend (System.Byte[] buffer, System.Int32 offset, System.Int32 count, System.Int32 timeout) [0x00029] in <f006731261df48db8f2d6d0dbf9a1802>:0 
+06/07/2023 15:13:25 Connection step Completed
+06/07/2023 15:13:25 ......device_ConnectStepChanged Step: Completed
+06/07/2023 15:13:25 OnReportErrorLog log file not exist.
+06/07/2023 15:13:28 Transfer clear cache dir /Users/ben.hicks@contino.io/.config/Wondershare/Dr.Fone/DrFoneRecovery
+06/07/2023 15:13:28 ok

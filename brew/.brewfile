@@ -197,6 +197,7 @@ cask "microsoft-azure-storage-explorer"
 cask "sublime-text"
 # cask "microsoft-remote-desktop"
 cask "github"
+cask "notion"
 # cask "parallels"
 
 # Chat and Meetings
@@ -210,7 +211,7 @@ cask "farrago"
 cask "audio-hijack"
 cask "loopback"
 cask "soundsource"
-#cask "spotify"
+cask "spotify"
 cask "vlc"
 cask "obs"
 # cask "obs-virtualcam"
@@ -230,3 +231,4 @@ mas "Parallels Desktop", id: 1085114709
 mas "Microsoft Remote Desktop", id: 1295203466
 mas "Moom", id: 419330170
 mas "Todoist: To-Do List & Tasks", id: 585829637
+mas "Tot", id: 1491071483
