@@ -47,7 +47,7 @@ Sounds good? Let's go.
 Clone the repository wherever you prefer — I like to store the files in **`~/projects/dotfiles`** and then symlink that to `~/dotfiles` (see [Symlinks](#step-5-symlinks)).
 
 ```bash
-$ git clone https://github.com/aaronbates/dotfiles.git    
+$ git clone https://github.com/bhicks329/dotfiles.git    
 ```
 
 ## Structure
