@@ -14,7 +14,7 @@ if [ -z ${dotfilesdir+x} ]; then
 fi;
 
 # Check if vim is installed.
-if vim n 2>/dev/null; then
+if vim --version 2>/dev/null; then
   botintro "Setting up vim and packages."
 
   # Declare array of vim directories to create.

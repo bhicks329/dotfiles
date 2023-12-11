@@ -72,7 +72,7 @@ source ./setup/files.sh
 
 # Install all available macos updates.
 #action "Installing Mac updates:\n"
-#sudo softwareupdate -ia
+sudo softwareupdate -ia
 
 # ---------
 # 1. Backup
@@ -105,10 +105,10 @@ if ! $brewinstall;  then
 fi;
 
 # asdf setup
-source ./setup/asdf.sh
+#source ./setup/asdf.sh
 
 # Node setup
-source ./setup/node.sh
+#source ./setup/node.sh
 
 # vim setup
 source ./setup/vim.sh

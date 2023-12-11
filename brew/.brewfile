@@ -218,8 +218,8 @@ cask "obs"
 cask "elgato-stream-deck"
 
 # APP STORE
-# mas "1Password", id: 1333542190
-mas "Airmail", id: 918858936
+mas "1Password", id: 1333542190
+#mas "Airmail", id: 918858936
 mas "Microsoft Word", id: 462054704
 mas "Microsoft Excel", id: 462058435
 mas "Microsoft PowerPoint", id: 462062816

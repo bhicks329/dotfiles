@@ -21,10 +21,13 @@ chmod 700 "$HOME/.gnupg"
 
 # Install the Solarized Dark theme for Terminal
 action "Installing Solarized Dark for Terminal"
+sudo xattr -r -d com.apple.quarantine "${dotfilesdir}/terminal/Solarized Dark xterm-256color.terminal"
 open "${dotfilesdir}/terminal/Solarized Dark xterm-256color.terminal"
 
 # Install the Solarized Dark High Contrast theme for iTerm2
 action "Installing Solarized Dark High Contrast for iTerm2"
-open "${dotfilesdir}/iterm2/Solarized Dark High Contrast.itermcolors"
+sudo xattr -r -d com.apple.quarantine "${dotfilesdir}/iterm2/Solarized Dark
+Higher Contrast.itermcolors"
+open "${dotfilesdir}/iterm2/Solarized Dark Higher Contrast.itermcolors"
 
 success "Final touches in place."

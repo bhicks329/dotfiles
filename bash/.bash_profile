@@ -46,7 +46,7 @@ done;
 [[ -r "$(brew --prefix)/etc/profile.d/bash_completion.sh" ]] && source "$(brew --prefix)/etc/profile.d/bash_completion.sh"
 
 # import homebrew bash-completions
-source $(brew --prefix asdf)/etc/bash_completion.d/asdf.bash
+#source $(brew --prefix asdf)/etc/bash_completion.d/asdf.bash
 source "$(brew --prefix)/etc/bash_completion.d/brew"
 # source "$(brew --prefix)/etc/bash_completion.d/gibo-completion.bash"
 source "$(brew --prefix)/etc/bash_completion.d/git-completion.bash"

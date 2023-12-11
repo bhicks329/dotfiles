@@ -297,3 +297,5 @@
 	signingkey = 102966B9A51DA607
 [init]
 	defaultBranch = main
+[gpg]
+	program = gpg

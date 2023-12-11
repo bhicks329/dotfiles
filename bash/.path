@@ -40,7 +40,7 @@ if hash awk 2>/dev/null; then
   PATH=$(echo "$PATH" | awk -v RS=':' -v ORS=":" '!a[$1]++{if (NR > 1) printf ORS; printf $a[$1]}')
 fi;
 
-# brew
-PATH="/opt/homebrew/bin:$PATH"
+#
+PATH="$PATH:/opt/homebrew/bin"
 
 export PATH
