@@ -96,7 +96,7 @@ cask "font-lato"
 cask "font-open-sans"
 cask "font-roboto"
 cask "font-source-code-pro"
-cask "font-source-sans-pro"
+# cask "font-source-sans-pro"
 cask "font-ubuntu"
 
 # SECURITY
@@ -177,6 +177,7 @@ brew "cmatrix"
 
 
 # GENERAL
+cask "arc"
 cask "caffeine"
 # cask "dropbox"
 cask "firefox"
@@ -202,7 +203,7 @@ cask "notion"
 
 # Chat and Meetings
 # cask "slack"
-#cask "whatsapp-beta"\
+cask "whatsapp"
 #cask "zoom"
 #cask "microsoft-teams"
 
