@@ -1,0 +1,22 @@
+# Copy this file to ~/.gitconfig.local
+#
+# This file is intentionally NOT symlinked into your home directory by setup.sh.
+# Keep it local to each machine/user to avoid committing personal or sensitive config.
+
+[user]
+  name = Your Name
+  email = you@example.com
+
+# If you sign commits, uncomment and set your key.
+# Note: signingkey is not secret, but it is personal.
+#
+# [commit]
+#   gpgsign = true
+#
+# [user]
+#   signingkey = YOURKEYID
+
+# Optional: prefer SSH for GitHub.
+#
+# [url "ssh://git@github.com/"]
+#   insteadOf = https://github.com/

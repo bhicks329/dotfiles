@@ -61,6 +61,22 @@ bin/push
 .vimrc.local
 .tmux.conf.local
 
+# Local override files (match anywhere, in case they get created inside the repo)
+**/.extra
+**/.extra.fish
+**/.gitconfig.local
+**/.path.local
+**/.vimrc.local
+**/.tmux.conf.local
+
+# Common local env/credential files
+.netrc
+**/.netrc
+.env
+.env.*
+**/.env
+**/.env.*
+
 # SSH keys and config (use ssh-agent, not git)
 .ssh/
 *.pem

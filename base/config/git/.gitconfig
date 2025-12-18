@@ -285,7 +285,7 @@
 [Include]
   # Local modifications that shouldn't be stored in a repo.
   # Add your personal [user] section to ~/.gitconfig.local
-  path = "./.gitconfig.local"
+  path = "~/.gitconfig.local"
 
 [filter "lfs"]
   clean = git-lfs clean -- %f
