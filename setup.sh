@@ -125,8 +125,13 @@ ask_for_sudo
 source ./setup/files.sh
 
 # Install all available macos updates.
-#action "Installing Mac updates:\n"
-sudo softwareupdate -ia
+ask_for_confirmation "Install all available macOS updates now?";
+if answer_is_yes; then
+  action "Installing Mac updates:\n"
+  sudo softwareupdate -ia
+else
+  warn "Skipping macOS updates."
+fi;
 
 # ---------
 # 1. Backup
