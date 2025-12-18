@@ -1,2 +1,2 @@
 [ -n "$PS1" ] && source "$HOME/.bash_profile";
-. "$HOME/.cargo/env"
+[ -f "$HOME/.cargo/env" ] && . "$HOME/.cargo/env"
