@@ -9,7 +9,7 @@ fi;
 # Load dirs and files if not already loaded.
 if [ -z ${filesloaded+x} ]; then
   source ./files.sh
-  echo -en "\n"
+  printf "\n"
 fi;
 
 bot "Backup directories and files we'll be touching."
@@ -32,7 +32,7 @@ if $dirsuccess; then
   success "Backup directories created."
 else
   error "Errors when creating backup directories, please check and resolve."
-  cancelled "\e[1mCannot proceed. Exit.\e[0m"
+  cancelled "\033[1mCannot proceed. Exit.\033[0m"
   exit -1
 fi;
 
@@ -75,6 +75,6 @@ cp -Rp ~/.netrc "$dotfilesbackupdir"
 cp -Rp ~/.ssh "$dotfilesbackupdir"
 cp -Rp ~/.z "$dotfilesbackupdir"
 
-echo -en "\n"
-success "\e[1mBackup completed to $HOME/backup/dotfiles-backup\e[0m"
+printf "\n"
+success "\033[1mBackup completed to $HOME/backup/dotfiles-backup\033[0m"
 

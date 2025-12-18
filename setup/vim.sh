@@ -37,7 +37,7 @@ if vim --version 2>/dev/null; then
     success "vim directories created."
   else
     error "Errors when creating vim directories, please check and resolve."
-    cancelled "\e[1mCannot proceed. Exit.\e[0m"
+    cancelled "\033[1mCannot proceed. Exit.\033[0m"
     exit -1
   fi;
 

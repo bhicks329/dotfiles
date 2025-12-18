@@ -28,7 +28,7 @@ if $dirsuccess; then
   success "Directories created."
 else
   error "Errors when creating directories, please check and resolve."
-  cancelled "\e[1mCannot proceed. Exit.\e[0m"
+  cancelled "\033[1mCannot proceed. Exit.\033[0m"
   exit -1
 fi;
 

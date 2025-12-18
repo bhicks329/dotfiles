@@ -10,45 +10,45 @@ COL_RESET=$ESC_SEQ"39;49;00m"
 COL_RED=$ESC_SEQ"31;01m"
 COL_GREEN=$ESC_SEQ"32;01m"
 COL_YELLOW=$ESC_SEQ"33;01m"
-COL_BLUE=$ESC_SEQ"\e[96m"
+COL_BLUE=$ESC_SEQ"96;01m"
 
 function ok() {
-  printf "%b[ok]%b %s\n" "$COL_GREEN" "$COL_RESET" "$1"
+  printf "%b[ok]%b %b\n" "$COL_GREEN" "$COL_RESET" "$1"
 }
 
 function botintro() {
-  printf "\n%b(っ◕‿◕)っ%b - %s\n" "$COL_BLUE" "$COL_RESET" "$1"
+  printf "\n%b(っ◕‿◕)っ%b - %b\n" "$COL_BLUE" "$COL_RESET" "$1"
 }
 function bot() {
-  printf "%b(っ◕‿◕)っ%b - %s\n" "$COL_BLUE" "$COL_RESET" "$1"
+  printf "%b(っ◕‿◕)っ%b - %b\n" "$COL_BLUE" "$COL_RESET" "$1"
 }
 
 function actioninfo() {
-  printf "%b[action]:%b ⇒ %s\n" "$COL_YELLOW" "$COL_RESET" "$1"
+  printf "%b[action]:%b ⇒ %b\n" "$COL_YELLOW" "$COL_RESET" "$1"
 }
 
 function running() {
-  printf "%b ⇒ %b %s: " "$COL_YELLOW" "$COL_RESET" "$1"
+  printf "%b ⇒ %b %b: " "$COL_YELLOW" "$COL_RESET" "$1"
 }
 
 function action() {
-  printf "\n%b[action]:%b ⇒ %s\n" "$COL_YELLOW" "$COL_RESET" "$1"
+  printf "\n%b[action]:%b ⇒ %b\n" "$COL_YELLOW" "$COL_RESET" "$1"
 }
 
 function warn() {
-  printf "%b[warning]%b %s\n" "$COL_YELLOW" "$COL_RESET" "$1"
+  printf "%b[warning]%b %b\n" "$COL_YELLOW" "$COL_RESET" "$1"
 }
 
 function success() {
-  printf "%b[success]%b %s\n" "$COL_GREEN" "$COL_RESET" "$1"
+  printf "%b[success]%b %b\n" "$COL_GREEN" "$COL_RESET" "$1"
 }
 
 function error() {
-  printf "%b[error]%b %s\n" "$COL_RED" "$COL_RESET" "$1"
+  printf "%b[error]%b %b\n" "$COL_RED" "$COL_RESET" "$1"
 }
 
 function cancelled() {
-  printf "%b[cancelled]%b %s\n" "$COL_RED" "$COL_RESET" "$1"
+  printf "%b[cancelled]%b %b\n" "$COL_RED" "$COL_RESET" "$1"
 }
 
 function awesome_header() {
@@ -64,7 +64,7 @@ function awesome_header() {
 }
 
 ask_for_confirmation() {
-  printf "\e[1m%s\e[0m (y/N) " "$1"
+  printf "\033[1m%b\033[0m (y/N) " "$1"
   read -n 1
   printf "\n"
 }
