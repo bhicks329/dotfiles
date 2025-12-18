@@ -1,132 +1,231 @@
-# Brewfile for this machine
-# Merged with base essentials
+# Brewfile for Midget
+# Categorized for easier maintenance
 
-# === Base Packages (from base/config/brew/.brewfile) ===
-
+# =====================
+# TAPS
+# =====================
 tap "azure/functions"
-tap "bramstein/webfonttools"
 tap "buo/cask-upgrade"
 tap "fluxcd/tap"
 tap "mongodb/brew"
 tap "ngrok/ngrok"
 tap "pulumi/tap"
 tap "siderolabs/tap"
-brew "ack"
-brew "adr-tools"
-brew "advancecomp"
-brew "age"
-brew "git"
-brew "asdf"
-brew "awscli"
-brew "azure-cli"
-brew "bandit"
+
+# =====================
+# CORE UTILITIES
+# =====================
 brew "bash"
 brew "bash-completion@2"
-brew "glib"
-brew "harfbuzz"
-brew "bfg"
-brew "brew-cask-completion"
-brew "cloc"
-brew "cmake"
-brew "cmatrix"
-brew "ruby"
-brew "cocoapods"
 brew "coreutils"
-brew "cryptography"
-brew "diff-so-fancy"
-brew "ffmpeg"
 brew "findutils"
+brew "gnu-sed"
+brew "grep"
+brew "moreutils"
+brew "zsh"
+brew "zsh-completions"
+
+# =====================
+# VERSION MANAGERS
+# =====================
+brew "asdf"
+brew "pyenv"
+brew "pyenv-virtualenv"
+
+# =====================
+# LANGUAGES & RUNTIMES
+# =====================
+brew "go"
 brew "node"
-brew "firebase-cli"
-brew "fzf"
+brew "python@3.12"
+brew "ruby"
+
+# =====================
+# GIT TOOLS
+# =====================
+brew "git"
+brew "bfg"
+brew "diff-so-fancy"
 brew "gh"
 brew "gibo"
 brew "git-delta"
 brew "git-extras"
 brew "git-lfs"
 brew "git-quick-stats"
-brew "gnu-sed"
-brew "gnupg"
-brew "go"
-brew "graphviz"
-brew "python@3.12"
-brew "grc"
-brew "grep"
+
+# =====================
+# CLOUD & INFRASTRUCTURE
+# =====================
+# AWS
+brew "awscli"
+
+# Azure
+brew "azure-cli"
+brew "azure/functions/azure-functions-core-tools@3"
+
+# GCP (via cask)
+
+# Kubernetes & Container Orchestration
 brew "helm"
-brew "httpie"
-brew "icdiff"
-brew "jq"
 brew "k9s"
-brew "kubernetes-cli"
+brew "kubecfg"
 brew "kubectx"
-brew "mackup"
-brew "macmon"
-brew "mas"
+brew "kubernetes-cli"
 brew "minikube"
+brew "openshift-cli"
+brew "talosctl"
+brew "siderolabs/tap/talosctl"
+brew "talhelper"
+
+# Infrastructure as Code
+brew "pulumi/tap/pulumi"
+brew "terraform"
+
+# FluxCD
+brew "fluxcd/tap/flux"
+
+# =====================
+# DATABASES
+# =====================
+brew "mongodb/brew/mongodb-community"
 brew "mongosh"
-brew "moreutils"
+
+# =====================
+# SECURITY & ENCRYPTION
+# =====================
+brew "age"
+brew "gnupg"
+brew "pinentry-mac"
+brew "sops"
+
+# =====================
+# NETWORKING & DEBUGGING
+# =====================
+brew "httpie"
 brew "mtr"
-brew "nano"
 brew "ngrep"
 brew "nmap"
-brew "openshift-cli"
 brew "openssh"
-brew "p7zip"
-brew "pidof"
-brew "pigz"
-brew "pinentry-mac"
-brew "pv"
-brew "pyenv"
-brew "pyenv-virtualenv"
-brew "reattach-to-user-namespace"
-brew "rename"
-brew "roundup"
-brew "screen"
-brew "sops"
-brew "spark"
 brew "speedtest-cli"
 brew "ssh-copy-id"
 brew "sshpass"
-brew "tailwindcss"
-brew "talhelper"
 brew "telnet"
-brew "temporal"
-brew "terminal-notifier"
-brew "terraform"
-brew "the_silver_searcher"
-brew "tmux"
-brew "trash-cli", link: true
-brew "tree"
-brew "trivy"
-brew "vbindiff"
-brew "vim"
-brew "wget"
 brew "wifi-password"
-brew "woff2"
+
+# =====================
+# DEVELOPMENT TOOLS
+# =====================
+brew "ack"
+brew "adr-tools"
+brew "cloc"
+brew "cmake"
+brew "cryptography"
+brew "firebase-cli"
+brew "graphviz"
+brew "icdiff"
+brew "jq"
+brew "mas"
+brew "nano"
+brew "tailwindcss"
+brew "temporal"
+brew "the_silver_searcher"
+brew "tree"
+brew "vim"
 brew "yq"
-brew "yt-dlp"
+
+# =====================
+# PYTHON TOOLS
+# =====================
+brew "bandit"
+
+# =====================
+# iOS DEVELOPMENT
+# =====================
+brew "cocoapods"
+
+# =====================
+# TERMINAL & SHELL
+# =====================
+brew "fzf"
+brew "grc"
+brew "reattach-to-user-namespace"
+brew "screen"
+brew "terminal-notifier"
+brew "tmux"
 brew "z"
+
+# =====================
+# FILE & DATA TOOLS
+# =====================
+brew "advancecomp"
+brew "ffmpeg"
+brew "p7zip"
+brew "pigz"
+brew "pv"
+brew "rename"
+brew "trash-cli", link: true
+brew "vbindiff"
+brew "wget"
+brew "yt-dlp"
 brew "zopfli"
-brew "zsh"
-brew "zsh-completions"
-brew "azure/functions/azure-functions-core-tools@3"
-brew "bramstein/webfonttools/sfnt2woff"
-brew "bramstein/webfonttools/sfnt2woff-zopfli"
-brew "fluxcd/tap/flux"
-brew "mongodb/brew/mongodb-community"
-brew "pulumi/tap/pulumi"
-brew "siderolabs/tap/talosctl"
+
+# =====================
+# COMPRESSION & OPTIMIZATION
+# =====================
+brew "woff2"
+
+# =====================
+# MISC UTILITIES
+# =====================
+brew "brew-cask-completion"
+brew "cmatrix"
+brew "glib"
+brew "harfbuzz"
+brew "mackup"
+brew "macmon"
+brew "pidof"
+brew "roundup"
+brew "spark"
+brew "trivy"
+
+# =====================
+# CASKS - SECURITY
+# =====================
 cask "1password"
 cask "1password-cli"
+cask "gpg-suite"
+cask "keybase"
+
+# =====================
+# CASKS - BROWSERS
+# =====================
 cask "arc"
-cask "audio-hijack"
-cask "caffeine"
-cask "dash"
-cask "elgato-stream-deck"
-cask "farrago"
 cask "firefox"
+cask "google-chrome"
+
+# =====================
+# CASKS - DEVELOPMENT
+# =====================
+cask "dash"
+cask "docker-desktop"
 cask "flutter"
-cask "flux-app"
+cask "gcloud-cli"
+cask "github"
+cask "graphiql"
+cask "insomnia"
+cask "iterm2"
+cask "kubecontext"
+cask "microsoft-azure-storage-explorer"
+cask "ngrok"
+cask "powershell"
+cask "sequel-ace"
+cask "sublime-text"
+cask "visual-studio-code"
+cask "windsurf"
+
+# =====================
+# CASKS - FONTS
+# =====================
 cask "font-domine"
 cask "font-fira-code"
 cask "font-fira-sans"
@@ -136,81 +235,115 @@ cask "font-open-sans"
 cask "font-roboto"
 cask "font-source-code-pro"
 cask "font-ubuntu"
+
+# =====================
+# CASKS - PRODUCTIVITY
+# =====================
 cask "g-desktop-suite"
-cask "gcloud-cli"
-cask "github"
-cask "google-chrome"
-cask "gpg-suite"
-cask "grammarly"
-cask "graphiql"
+cask "microsoft-auto-update"
+
+# =====================
+# CASKS - MEDIA
+# =====================
+cask "obs"
+cask "spotify"
+cask "vlc"
+
+# =====================
+# CASKS - COMMUNICATION
+# =====================
+cask "whatsapp"
+
+# =====================
+# CASKS - IMAGE TOOLS
+# =====================
 cask "imagealpha"
 cask "imageoptim"
-cask "insomnia"
-cask "iterm2"
-cask "keybase"
-cask "loopback"
-cask "microsoft-auto-update"
-cask "microsoft-azure-storage-explorer"
-cask "microsoft-edge"
-cask "ngrok"
-cask "notion"
-cask "obs"
-cask "powershell"
+
+# =====================
+# CASKS - QUICKLOOK PLUGINS
+# =====================
 cask "qlprettypatch"
 cask "qlvideo"
 cask "quicklook-csv"
 cask "quicklook-json"
 cask "quicklookase"
-cask "sequel-ace"
-cask "soundsource"
-cask "spotify"
-cask "sublime-text"
-cask "visual-studio-code"
-cask "vlc"
 cask "webpquicklook"
-cask "whatsapp"
+
+# =====================
+# MAC APP STORE
+# =====================
 mas "1Password for Safari", id: 1569813296
-mas "Fantastical", id: 975937182
+mas "Tailscale", id: 1475387142
+mas "Todoist", id: 585829637
+mas "Tot", id: 1491071483
+mas "Xcode", id: 497799835
+
+# Microsoft Office
 mas "Microsoft Excel", id: 462058435
 mas "Microsoft OneNote", id: 784801555
 mas "Microsoft Outlook", id: 985367838
 mas "Microsoft PowerPoint", id: 462062816
-mas "Microsoft Remote Desktop", id: 1295203466
 mas "Microsoft Word", id: 462054704
 mas "OneDrive", id: 823766827
-mas "Parallels Desktop", id: 1085114709
-mas "Tailscale", id: 1475387142
-mas "Todoist", id: 585829637
-mas "Tot", id: 1491071483
-mas "WireGuard", id: 1451685025
-mas "Xcode", id: 497799835
-vscode "antfu.browse-lite"
-vscode "antfu.vite"
+
+# Virtualization
+mas "Microsoft Remote Desktop", id: 1295203466
+
+# =====================
+# VSCODE - AI ASSISTANTS
+# =====================
 vscode "anthropic.claude-code"
-vscode "azurite.azurite"
-vscode "bierner.markdown-mermaid"
-vscode "bpruitt-goddard.mermaid-markdown-syntax-highlighting"
 vscode "codeium.codeium"
-vscode "davidanson.vscode-markdownlint"
-vscode "dbaeumer.vscode-eslint"
-vscode "docker.docker"
-vscode "eamodio.gitlens"
-vscode "esbenp.prettier-vscode"
-vscode "fabric.vscode-fabric"
 vscode "github.copilot"
 vscode "github.copilot-chat"
+vscode "google.geminicodeassist"
+vscode "rooveterinaryinc.roo-cline"
+vscode "saoudrizwan.claude-dev"
+
+# =====================
+# VSCODE - GIT & GITHUB
+# =====================
+vscode "eamodio.gitlens"
 vscode "github.github-vscode-theme"
 vscode "github.remotehub"
 vscode "github.vscode-github-actions"
 vscode "github.vscode-pull-request-github"
-vscode "golang.go"
-vscode "google.geminicodeassist"
-vscode "googlecloudtools.cloudcode"
-vscode "hashicorp.terraform"
-vscode "humao.rest-client"
-vscode "keesschollaart.vscode-home-assistant"
-vscode "kevinrose.vsc-python-indent"
 vscode "me-dutour-mathieu.vscode-github-actions"
+
+# =====================
+# VSCODE - LANGUAGES
+# =====================
+# Go
+vscode "golang.go"
+
+# Python
+vscode "kevinrose.vsc-python-indent"
+vscode "ms-python.debugpy"
+vscode "ms-python.python"
+vscode "ms-python.vscode-pylance"
+vscode "ms-python.vscode-python-envs"
+vscode "ms-toolsai.jupyter"
+vscode "ms-toolsai.jupyter-keymap"
+vscode "ms-toolsai.jupyter-renderers"
+vscode "ms-toolsai.vscode-jupyter-cell-tags"
+vscode "ms-toolsai.vscode-jupyter-slideshow"
+
+# .NET/C#
+vscode "ms-dotnettools.csharp"
+vscode "ms-dotnettools.vscode-dotnet-runtime"
+
+# Web Development
+vscode "antfu.browse-lite"
+vscode "antfu.vite"
+vscode "dbaeumer.vscode-eslint"
+vscode "esbenp.prettier-vscode"
+vscode "ritwickdey.liveserver"
+
+# =====================
+# VSCODE - AZURE
+# =====================
+vscode "azurite.azurite"
 vscode "ms-azure-devops.azure-pipelines"
 vscode "ms-azure-load-testing.microsoft-testing"
 vscode "ms-azuretools.azure-dev"
@@ -228,52 +361,71 @@ vscode "ms-azuretools.vscode-bicep"
 vscode "ms-azuretools.vscode-containers"
 vscode "ms-azuretools.vscode-cosmosdb"
 vscode "ms-azuretools.vscode-docker"
-vscode "ms-dotnettools.csharp"
-vscode "ms-dotnettools.vscode-dotnet-runtime"
-vscode "ms-kubernetes-tools.vscode-aks-tools"
-vscode "ms-kubernetes-tools.vscode-kubernetes-tools"
+vscode "ms-vscode.azure-repos"
+vscode "ms-vscode.azurecli"
+vscode "ms-vscode.vscode-node-azure-pack"
+vscode "ms-windows-ai-studio.windows-ai-studio"
+vscode "teamsdevapp.ms-teams-vscode-extension"
+vscode "teamsdevapp.vscode-ai-foundry"
+
+# =====================
+# VSCODE - GCP
+# =====================
+vscode "googlecloudtools.cloudcode"
+
+# =====================
+# VSCODE - DATABASES
+# =====================
 vscode "ms-mssql.data-workspace-vscode"
 vscode "ms-mssql.mssql"
 vscode "ms-mssql.sql-bindings-vscode"
 vscode "ms-mssql.sql-database-projects-vscode"
-vscode "ms-python.debugpy"
-vscode "ms-python.python"
-vscode "ms-python.vscode-pylance"
-vscode "ms-python.vscode-python-envs"
-vscode "ms-toolsai.jupyter"
-vscode "ms-toolsai.jupyter-keymap"
-vscode "ms-toolsai.jupyter-renderers"
-vscode "ms-toolsai.vscode-jupyter-cell-tags"
-vscode "ms-toolsai.vscode-jupyter-slideshow"
+
+# =====================
+# VSCODE - KUBERNETES & CONTAINERS
+# =====================
+vscode "docker.docker"
+vscode "ms-kubernetes-tools.vscode-aks-tools"
+vscode "ms-kubernetes-tools.vscode-kubernetes-tools"
+
+# =====================
+# VSCODE - INFRASTRUCTURE
+# =====================
+vscode "hashicorp.terraform"
+vscode "ms-vscode.powershell"
+
+# =====================
+# VSCODE - MARKDOWN & DOCS
+# =====================
+vscode "bierner.markdown-mermaid"
+vscode "bpruitt-goddard.mermaid-markdown-syntax-highlighting"
+vscode "davidanson.vscode-markdownlint"
+vscode "tomoki1207.pdf"
+vscode "vstirbu.vscode-mermaid-preview"
+
+# =====================
+# VSCODE - DATA & CONFIG
+# =====================
+vscode "redhat.vscode-xml"
+vscode "redhat.vscode-yaml"
+
+# =====================
+# VSCODE - REMOTE DEVELOPMENT
+# =====================
 vscode "ms-vscode-remote.remote-containers"
 vscode "ms-vscode-remote.remote-ssh"
 vscode "ms-vscode-remote.remote-ssh-edit"
 vscode "ms-vscode-remote.vscode-remote-extensionpack"
-vscode "ms-vscode.azure-repos"
-vscode "ms-vscode.azurecli"
-vscode "ms-vscode.powershell"
 vscode "ms-vscode.remote-explorer"
 vscode "ms-vscode.remote-repositories"
 vscode "ms-vscode.remote-server"
-vscode "ms-vscode.vscode-node-azure-pack"
-vscode "ms-windows-ai-studio.windows-ai-studio"
-vscode "redhat.vscode-xml"
-vscode "redhat.vscode-yaml"
-vscode "ritwickdey.liveserver"
-vscode "rooveterinaryinc.roo-cline"
-vscode "saoudrizwan.claude-dev"
+
+# =====================
+# VSCODE - MISC
+# =====================
+vscode "fabric.vscode-fabric"
+vscode "humao.rest-client"
+vscode "keesschollaart.vscode-home-assistant"
 vscode "synapsevscode.synapse"
-vscode "teamsdevapp.ms-teams-vscode-extension"
-vscode "teamsdevapp.vscode-ai-foundry"
-vscode "tomoki1207.pdf"
 vscode "vscode-icons-team.vscode-icons"
-vscode "vstirbu.vscode-mermaid-preview"
 vscode "wayou.vscode-todo-highlight"
-
-# === Machine-Specific Packages ===
-
-brew "kubecfg"
-brew "talosctl"
-cask "docker-desktop"
-cask "kubecontext"
-cask "windsurf"
