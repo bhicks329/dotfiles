@@ -1,3 +1,8 @@
+# Brewfile for this machine
+# Merged with base essentials
+
+# === Base Packages (from base/config/brew/.brewfile) ===
+
 tap "azure/functions"
 tap "bramstein/webfonttools"
 tap "buo/cask-upgrade"
@@ -273,3 +278,11 @@ vscode "tomoki1207.pdf"
 vscode "vscode-icons-team.vscode-icons"
 vscode "vstirbu.vscode-mermaid-preview"
 vscode "wayou.vscode-todo-highlight"
+
+# === Machine-Specific Packages ===
+
+brew "kubecfg"
+brew "talosctl"
+cask "docker-desktop"
+cask "kubecontext"
+cask "windsurf"
