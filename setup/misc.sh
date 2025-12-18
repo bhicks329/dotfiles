@@ -16,18 +16,17 @@ chmod 700 "$HOME/.ssh"
 print_result $? "Set chmod 700 on ~/.ssh"
 
 action "Setting chmod for ~/.gnupg"
-mkdir "$HOME/.gnupg"
+mkdir -p "$HOME/.gnupg"
 chmod 700 "$HOME/.gnupg"
 
 # Install the Solarized Dark theme for Terminal
 action "Installing Solarized Dark for Terminal"
-sudo xattr -r -d com.apple.quarantine "${dotfilesdir}/terminal/Solarized Dark xterm-256color.terminal"
-open "${dotfilesdir}/terminal/Solarized Dark xterm-256color.terminal"
+sudo xattr -r -d com.apple.quarantine "${dotfilesdir}/base/themes/terminal/Solarized Dark xterm-256color.terminal"
+open "${dotfilesdir}/base/themes/terminal/Solarized Dark xterm-256color.terminal"
 
 # Install the Solarized Dark High Contrast theme for iTerm2
 action "Installing Solarized Dark High Contrast for iTerm2"
-sudo xattr -r -d com.apple.quarantine "${dotfilesdir}/iterm2/Solarized Dark
-Higher Contrast.itermcolors"
-open "${dotfilesdir}/iterm2/Solarized Dark Higher Contrast.itermcolors"
+sudo xattr -r -d com.apple.quarantine "${dotfilesdir}/base/themes/iterm2/Solarized Dark Higher Contrast.itermcolors"
+open "${dotfilesdir}/base/themes/iterm2/Solarized Dark Higher Contrast.itermcolors"
 
 success "Final touches in place."

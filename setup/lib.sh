@@ -13,61 +13,60 @@ COL_YELLOW=$ESC_SEQ"33;01m"
 COL_BLUE=$ESC_SEQ"\e[96m"
 
 function ok() {
-  echo -e "$COL_GREEN[ok]$COL_RESET $1"
+  printf "%b[ok]%b %s\n" "$COL_GREEN" "$COL_RESET" "$1"
 }
 
 function botintro() {
-  echo -e "\n$COL_BLUE(っ◕‿◕)っ$COL_RESET - $1"
+  printf "\n%b(っ◕‿◕)っ%b - %s\n" "$COL_BLUE" "$COL_RESET" "$1"
 }
 function bot() {
-  echo -e "$COL_BLUE(っ◕‿◕)っ$COL_RESET - $1"
+  printf "%b(っ◕‿◕)っ%b - %s\n" "$COL_BLUE" "$COL_RESET" "$1"
 }
 
 function actioninfo() {
-  echo -e "$COL_YELLOW[action]:$COL_RESET ⇒ $1"
+  printf "%b[action]:%b ⇒ %s\n" "$COL_YELLOW" "$COL_RESET" "$1"
 }
 
 function running() {
-  echo -en "$COL_YELLOW ⇒ $COL_RESET $1: "
+  printf "%b ⇒ %b %s: " "$COL_YELLOW" "$COL_RESET" "$1"
 }
 
 function action() {
-  echo -e "\n$COL_YELLOW[action]:$COL_RESET ⇒ $1"
+  printf "\n%b[action]:%b ⇒ %s\n" "$COL_YELLOW" "$COL_RESET" "$1"
 }
 
 function warn() {
-  echo -e "$COL_YELLOW[warning]$COL_RESET $1"
+  printf "%b[warning]%b %s\n" "$COL_YELLOW" "$COL_RESET" "$1"
 }
 
 function success() {
-  echo -e "$COL_GREEN[success]$COL_RESET $1"
+  printf "%b[success]%b %s\n" "$COL_GREEN" "$COL_RESET" "$1"
 }
 
 function error() {
-  echo -e "$COL_RED[error]$COL_RESET $1"
+  printf "%b[error]%b %s\n" "$COL_RED" "$COL_RESET" "$1"
 }
 
 function cancelled() {
-  echo -e "$COL_RED[cancelled]$COL_RESET $1"
+  printf "%b[cancelled]%b %s\n" "$COL_RED" "$COL_RESET" "$1"
 }
 
 function awesome_header() {
-  echo -en "\n$COL_BLUE          ██            ██     ████ ██  ██ $COL_RESET"
-  echo -en "\n$COL_BLUE         ░██           ░██    ░██░ ░░  ░██ $COL_RESET"
-  echo -en "\n$COL_BLUE         ░██  ██████  ██████ ██████ ██ ░██  █████   ██████ $COL_RESET"
-  echo -en "\n$COL_BLUE      ██████ ██░░░░██░░░██░ ░░░██░ ░██ ░██ ██░░░██ ██░░░░ $COL_RESET"
-  echo -en "\n$COL_BLUE     ██░░░██░██   ░██  ░██    ░██  ░██ ░██░███████░░█████ $COL_RESET"
-  echo -en "\n$COL_BLUE    ░██  ░██░██   ░██  ░██    ░██  ░██ ░██░██░░░░  ░░░░░██ $COL_RESET"
-  echo -en "\n$COL_BLUE    ░░██████░░██████   ░░██   ░██  ░██ ███░░██████ ██████ $COL_RESET"
-  echo -en "\n$COL_BLUE     ░░░░░░  ░░░░░░     ░░    ░░   ░░ ░░░  ░░░░░░ ░░░░░░ $COL_RESET"
-  echo -en "\n"
-  echo -en "\n"
+  printf "\n%b          ██            ██     ████ ██  ██ %b" "$COL_BLUE" "$COL_RESET"
+  printf "\n%b         ░██           ░██    ░██░ ░░  ░██ %b" "$COL_BLUE" "$COL_RESET"
+  printf "\n%b         ░██  ██████  ██████ ██████ ██ ░██  █████   ██████ %b" "$COL_BLUE" "$COL_RESET"
+  printf "\n%b      ██████ ██░░░░██░░░██░ ░░░██░ ░██ ░██ ██░░░██ ██░░░░ %b" "$COL_BLUE" "$COL_RESET"
+  printf "\n%b     ██░░░██░██   ░██  ░██    ░██  ░██ ░██░███████░░█████ %b" "$COL_BLUE" "$COL_RESET"
+  printf "\n%b    ░██  ░██░██   ░██  ░██    ░██  ░██ ░██░██░░░░  ░░░░░██ %b" "$COL_BLUE" "$COL_RESET"
+  printf "\n%b    ░░██████░░██████   ░░██   ░██  ░██ ███░░██████ ██████ %b" "$COL_BLUE" "$COL_RESET"
+  printf "\n%b     ░░░░░░  ░░░░░░     ░░    ░░   ░░ ░░░  ░░░░░░ ░░░░░░ %b" "$COL_BLUE" "$COL_RESET"
+  printf "\n\n"
 }
 
 ask_for_confirmation() {
-  echo -e "\e[1m$1\e[0m (y/N) "
+  printf "\e[1m%s\e[0m (y/N) " "$1"
   read -n 1
-  echo -e "\n"
+  printf "\n"
 }
 
 answer_is_yes() {
@@ -169,7 +168,17 @@ process_symlinks () {
   local createlink=false
 
   # check if target exists
-  if [ -e "$linktarget" ]; then
+  if [ -e "$linktarget" ] || [ -L "$linktarget" ]; then
+    # Check if it's already a symlink pointing to the correct location
+    if [ -L "$linktarget" ]; then
+      local current_target=$(readlink "$linktarget")
+      if [ "$current_target" = "$linksource" ]; then
+        # Already correctly symlinked, skip
+        ok "Already linked: $(basename "$linktarget") => $linksource"
+        return 0
+      fi
+    fi
+
     ask_for_confirmation "\n'$linktarget' already exists, do you want to overwrite it?"
 
     if answer_is_yes; then

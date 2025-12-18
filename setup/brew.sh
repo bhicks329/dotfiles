@@ -39,7 +39,9 @@ if $brewinstall; then
   fi;
 
   # Add brew to path
-  echo 'eval "$(/opt/homebrew/bin/brew shellenv)"' >> ~/.zprofile
+  if ! grep -Fqs 'eval "$(/opt/homebrew/bin/brew shellenv)"' ~/.zprofile; then
+    echo 'eval "$(/opt/homebrew/bin/brew shellenv)"' >> ~/.zprofile
+  fi
   eval "$(/opt/homebrew/bin/brew shellenv)"	
 
   running "brew update + brew upgrade"
@@ -55,8 +57,26 @@ if $brewinstall; then
 #    chsh -s /usr/local/bin/bash;
 #  fi;
 
-  running "Installing from BrewFile"
-  brew bundle install --file brew/.brewfile
+  # Brewfile priority:
+  # 1. Machine-specific Brewfile (machines/<hostname>/config/brew/.brewfile)
+  # 2. Base Brewfile (base/config/brew/.brewfile)
+  MACHINE_BREWFILE="$MACHINE_DIR/config/brew/.brewfile"
+  BASE_BREWFILE="$dotfilesdir/base/config/brew/.brewfile"
+
+  if [ -f "$MACHINE_BREWFILE" ]; then
+    success "Found machine-specific Brewfile for $MACHINE_NAME"
+    running "Installing from: $MACHINE_BREWFILE"
+    brew bundle install --file "$MACHINE_BREWFILE"
+  elif [ -f "$BASE_BREWFILE" ]; then
+    warn "No machine-specific Brewfile found"
+    info "Using base Brewfile: $BASE_BREWFILE"
+    info "Tip: Run 'brewfile-manager init' to create machine-specific Brewfile"
+    running "Installing from base Brewfile"
+    brew bundle install --file "$BASE_BREWFILE"
+  else
+    error "No Brewfile found! Expected at $BASE_BREWFILE"
+    cancelled "Skipping brew bundle install"
+  fi
 
   
   # running "brew bundle cleanup"

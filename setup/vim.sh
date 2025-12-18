@@ -47,10 +47,26 @@ if vim --version 2>/dev/null; then
 
   # Install bundle plugins (using pathogen)
   cd "$HOME/.vim/bundle"
-  git clone https://github.com/altercation/vim-colors-solarized.git # solarized
-  git clone https://github.com/tpope/vim-sensible.git # vim sensible
-  git clone https://github.com/scrooloose/nerdtree.git # nerdtree
-  git clone https://github.com/ctrlpvim/ctrlp.vim.git # ctrlp
+  if [ ! -d "$HOME/.vim/bundle/vim-colors-solarized" ]; then
+    git clone https://github.com/altercation/vim-colors-solarized.git # solarized
+  else
+    success "vim-colors-solarized already installed."
+  fi
+  if [ ! -d "$HOME/.vim/bundle/vim-sensible" ]; then
+    git clone https://github.com/tpope/vim-sensible.git # vim sensible
+  else
+    success "vim-sensible already installed."
+  fi
+  if [ ! -d "$HOME/.vim/bundle/nerdtree" ]; then
+    git clone https://github.com/scrooloose/nerdtree.git # nerdtree
+  else
+    success "nerdtree already installed."
+  fi
+  if [ ! -d "$HOME/.vim/bundle/ctrlp.vim" ]; then
+    git clone https://github.com/ctrlpvim/ctrlp.vim.git # ctrlp
+  else
+    success "ctrlp.vim already installed."
+  fi
   cd "$dotfilesdir"
 
   # fin.

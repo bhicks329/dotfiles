@@ -1,0 +1,341 @@
+#!/usr/bin/env bash
+
+# Brewfile Manager
+# Manages machine-specific Brewfiles with base merging
+
+set -e
+
+DOTFILES_DIR="${DOTFILES_DIR:-$HOME/source/dotfiles}"
+MACHINE_NAME=$(hostname -s)
+BASE_BREWFILE="$DOTFILES_DIR/base/config/brew/.brewfile"
+MACHINE_BREWFILE="$DOTFILES_DIR/machines/$MACHINE_NAME/config/brew/.brewfile"
+
+# Colors
+RED='\033[0;31m'
+GREEN='\033[0;32m'
+YELLOW='\033[1;33m'
+BLUE='\033[0;34m'
+BOLD='\033[1m'
+NC='\033[0m' # No Color
+
+show_help() {
+  printf "${BOLD}Brewfile Manager${NC}\n\n"
+  printf "Manage machine-specific Brewfiles with base merging.\n\n"
+
+  printf "${BOLD}USAGE:${NC}\n"
+  printf "  brewfile-manager [command] [options]\n\n"
+
+  printf "${BOLD}COMMANDS:${NC}\n"
+  printf "  ${GREEN}init${NC}              Initialize machine Brewfile from base\n"
+  printf "  ${GREEN}merge${NC}             Merge base Brewfile into machine Brewfile (no duplicates)\n"
+  printf "  ${GREEN}copy${NC} <machine>    Copy another machine's Brewfile as template\n"
+  printf "  ${GREEN}diff${NC}              Show differences between base and machine Brewfiles\n"
+  printf "  ${GREEN}generate${NC}          Generate current machine's Brewfile from installed packages\n"
+  printf "  ${GREEN}sync${NC}              Interactive sync - add base entries not in machine file\n"
+  printf "  ${GREEN}list${NC}              List all machine Brewfiles\n"
+  printf "  ${GREEN}status${NC}            Show which Brewfile is active\n\n"
+
+  printf "${BOLD}EXAMPLES:${NC}\n"
+  printf "  # First time setup on new machine\n"
+  printf "  brewfile-manager init\n\n"
+  printf "  # Copy from your other machine as starting point\n"
+  printf "  brewfile-manager copy widget\n\n"
+  printf "  # Merge base essentials into current machine\n"
+  printf "  brewfile-manager merge\n\n"
+  printf "  # See what's different between base and your machine\n"
+  printf "  brewfile-manager diff\n\n"
+  printf "  # Generate Brewfile from what's currently installed\n"
+  printf "  brewfile-manager generate\n\n"
+
+  printf "${BOLD}WORKFLOW:${NC}\n"
+  printf "  1. Run 'init' or 'generate' on new machine\n"
+  printf "  2. Edit machines/\$MACHINE_NAME/config/brew/.brewfile\n"
+  printf "  3. Run 'merge' to add base essentials\n"
+  printf "  4. Commit machine-specific Brewfile\n\n"
+}
+
+error() {
+  printf "${RED}Error:${NC} %s\n" "$1" >&2
+  exit 1
+}
+
+success() {
+  printf "${GREEN}✓${NC} %s\n" "$1"
+}
+
+info() {
+  printf "${BLUE}ℹ${NC} %s\n" "$1"
+}
+
+warn() {
+  printf "${YELLOW}⚠${NC} %s\n" "$1"
+}
+
+ensure_machine_dir() {
+  mkdir -p "$(dirname "$MACHINE_BREWFILE")"
+}
+
+cmd_init() {
+  if [ -f "$MACHINE_BREWFILE" ]; then
+    warn "Machine Brewfile already exists at:"
+    printf "  %s\n" "$MACHINE_BREWFILE"
+    read -p "Overwrite? (y/N) " -n 1 -r
+    printf "\n"
+    [[ ! $REPLY =~ ^[Yy]$ ]] && exit 0
+  fi
+
+  ensure_machine_dir
+
+  cat > "$MACHINE_BREWFILE" << 'EOF'
+# Brewfile for this machine
+# Base essentials are merged from base/config/brew/.brewfile
+# Add machine-specific packages below
+
+# === Machine-Specific Packages ===
+
+# Add your packages here
+# tap "example/tap"
+# brew "package-name"
+# cask "application-name"
+
+EOF
+
+  success "Created machine Brewfile: $MACHINE_BREWFILE"
+  info "Edit this file to add machine-specific packages"
+  info "Run 'brewfile-manager merge' to include base packages"
+}
+
+cmd_generate() {
+  ensure_machine_dir
+
+  if [ -f "$MACHINE_BREWFILE" ]; then
+    warn "Machine Brewfile already exists. Backing up to .brewfile.bak"
+    cp "$MACHINE_BREWFILE" "${MACHINE_BREWFILE}.bak"
+  fi
+
+  info "Generating Brewfile from currently installed packages..."
+  brew bundle dump --file="$MACHINE_BREWFILE" --force
+
+  success "Generated machine Brewfile: $MACHINE_BREWFILE"
+  info "Review and edit this file, then commit it"
+}
+
+cmd_merge() {
+  [ ! -f "$BASE_BREWFILE" ] && error "Base Brewfile not found: $BASE_BREWFILE"
+  [ ! -f "$MACHINE_BREWFILE" ] && error "Machine Brewfile not found. Run 'brewfile-manager init' first"
+
+  info "Merging base Brewfile into machine Brewfile..."
+
+  # Create temp file with merged content
+  TEMP_FILE=$(mktemp)
+
+  # Add header
+  cat > "$TEMP_FILE" << 'EOF'
+# Brewfile for this machine
+# Merged with base essentials
+
+# === Base Packages (from base/config/brew/.brewfile) ===
+
+EOF
+
+  # Add base brewfile
+  cat "$BASE_BREWFILE" >> "$TEMP_FILE"
+
+  # Add separator
+  cat >> "$TEMP_FILE" << 'EOF'
+
+# === Machine-Specific Packages ===
+
+EOF
+
+  # Add machine-specific entries (skip duplicates)
+  while IFS= read -r line; do
+    # Skip comments and empty lines from machine file
+    [[ "$line" =~ ^[[:space:]]*# ]] && continue
+    [[ -z "$line" ]] && continue
+
+    # Check if line already exists in base
+    if ! grep -Fxq "$line" "$BASE_BREWFILE" 2>/dev/null; then
+      echo "$line" >> "$TEMP_FILE"
+    fi
+  done < "$MACHINE_BREWFILE"
+
+  # Backup original
+  cp "$MACHINE_BREWFILE" "${MACHINE_BREWFILE}.bak"
+
+  # Replace with merged version
+  mv "$TEMP_FILE" "$MACHINE_BREWFILE"
+
+  success "Merged base Brewfile into machine Brewfile"
+  info "Original backed up to: ${MACHINE_BREWFILE}.bak"
+  info "Review changes: diff ${MACHINE_BREWFILE}.bak $MACHINE_BREWFILE"
+}
+
+cmd_copy() {
+  local source_machine="$1"
+  [ -z "$source_machine" ] && error "Please specify source machine name"
+
+  local source_brewfile="$DOTFILES_DIR/machines/$source_machine/config/brew/.brewfile"
+  [ ! -f "$source_brewfile" ] && error "Source Brewfile not found: $source_brewfile"
+
+  if [ -f "$MACHINE_BREWFILE" ]; then
+    warn "Machine Brewfile already exists"
+    read -p "Overwrite with copy from $source_machine? (y/N) " -n 1 -r
+    echo
+    [[ ! $REPLY =~ ^[Yy]$ ]] && exit 0
+    cp "$MACHINE_BREWFILE" "${MACHINE_BREWFILE}.bak"
+  fi
+
+  ensure_machine_dir
+  cp "$source_brewfile" "$MACHINE_BREWFILE"
+
+  success "Copied Brewfile from $source_machine to $MACHINE_NAME"
+  info "Edit $MACHINE_BREWFILE to customize for this machine"
+}
+
+cmd_diff() {
+  [ ! -f "$BASE_BREWFILE" ] && error "Base Brewfile not found: $BASE_BREWFILE"
+  [ ! -f "$MACHINE_BREWFILE" ] && error "Machine Brewfile not found: $MACHINE_BREWFILE"
+
+  echo -e "${BOLD}Differences between base and $MACHINE_NAME:${NC}"
+  echo ""
+  diff -u "$BASE_BREWFILE" "$MACHINE_BREWFILE" || true
+}
+
+cmd_sync() {
+  [ ! -f "$BASE_BREWFILE" ] && error "Base Brewfile not found: $BASE_BREWFILE"
+  [ ! -f "$MACHINE_BREWFILE" ] && error "Machine Brewfile not found. Run 'brewfile-manager init' first"
+
+  printf "${BOLD}Interactive Sync${NC}\n"
+  printf "Checking for base packages not in machine Brewfile...\n\n"
+
+  declare -a missing_packages=()
+
+  while IFS= read -r line; do
+    # Skip comments and empty lines
+    [[ "$line" =~ ^[[:space:]]*# ]] && continue
+    [[ -z "$line" ]] && continue
+
+    # Check if this package is in machine brewfile
+    if ! grep -Fq "$line" "$MACHINE_BREWFILE" 2>/dev/null; then
+      missing_packages+=("$line")
+    fi
+  done < "$BASE_BREWFILE"
+
+  if [ ${#missing_packages[@]} -eq 0 ]; then
+    success "All base packages are already in machine Brewfile"
+    exit 0
+  fi
+
+  printf "${YELLOW}Found %d packages in base not in machine Brewfile:${NC}\n\n" "${#missing_packages[@]}"
+
+  for pkg in "${missing_packages[@]}"; do
+    printf "${BOLD}Package:${NC} %s\n" "$pkg"
+    read -p "Add to machine Brewfile? (y/N/q) " -n 1 -r
+    printf "\n"
+
+    case $REPLY in
+      y|Y)
+        echo "$pkg" >> "$MACHINE_BREWFILE"
+        success "Added: $pkg"
+        ;;
+      q|Q)
+        info "Sync cancelled"
+        exit 0
+        ;;
+      *)
+        info "Skipped: $pkg"
+        ;;
+    esac
+    printf "\n"
+  done
+
+  success "Sync complete"
+}
+
+cmd_list() {
+  printf "${BOLD}Available machine Brewfiles:${NC}\n\n"
+
+  if [ -d "$DOTFILES_DIR/machines" ]; then
+    for machine_dir in "$DOTFILES_DIR/machines"/*; do
+      [ ! -d "$machine_dir" ] && continue
+
+      machine=$(basename "$machine_dir")
+      brewfile="$machine_dir/config/brew/.brewfile"
+
+      if [ -f "$brewfile" ]; then
+        count=$(grep -cE "^(brew|cask|tap)" "$brewfile" 2>/dev/null || echo "0")
+
+        if [ "$machine" = "$MACHINE_NAME" ]; then
+          printf "  ${GREEN}●${NC} ${BOLD}%s${NC} (current) - %s packages\n" "$machine" "$count"
+        else
+          printf "  ○ %s - %s packages\n" "$machine" "$count"
+        fi
+      fi
+    done
+  fi
+
+  printf "\n"
+  base_count=$(grep -cE "^(brew|cask|tap)" "$BASE_BREWFILE" 2>/dev/null || echo "0")
+  printf "  ${BLUE}Base Brewfile:${NC} %s packages\n" "$base_count"
+}
+
+cmd_status() {
+  printf "${BOLD}Current Machine:${NC} %s\n\n" "$MACHINE_NAME"
+
+  if [ -f "$MACHINE_BREWFILE" ]; then
+    success "Machine Brewfile exists"
+    printf "  Location: %s\n" "$MACHINE_BREWFILE"
+
+    count=$(grep -cE "^(brew|cask|tap)" "$MACHINE_BREWFILE" 2>/dev/null || echo "0")
+    printf "  Packages: %s\n" "$count"
+  else
+    warn "No machine-specific Brewfile"
+    printf "  Run 'brewfile-manager init' to create one\n"
+  fi
+
+  printf "\n"
+
+  if [ -f "$BASE_BREWFILE" ]; then
+    info "Base Brewfile exists"
+    base_count=$(grep -cE "^(brew|cask|tap)" "$BASE_BREWFILE" 2>/dev/null || echo "0")
+    printf "  Packages: %s\n" "$base_count"
+  fi
+}
+
+# Main
+case "${1:-}" in
+  init)
+    cmd_init
+    ;;
+  merge)
+    cmd_merge
+    ;;
+  copy)
+    cmd_copy "${2:-}"
+    ;;
+  diff)
+    cmd_diff
+    ;;
+  generate)
+    cmd_generate
+    ;;
+  sync)
+    cmd_sync
+    ;;
+  list)
+    cmd_list
+    ;;
+  status)
+    cmd_status
+    ;;
+  help|--help|-h)
+    show_help
+    ;;
+  "")
+    show_help
+    ;;
+  *)
+    error "Unknown command: $1. Run 'brewfile-manager help' for usage."
+    ;;
+esac

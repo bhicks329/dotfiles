@@ -1,461 +1,304 @@
 # `$HOME sweet ~/`
 
+> **macOS Only** - This dotfiles setup is designed exclusively for macOS and uses macOS-specific tools like Homebrew, mas-cli, and macOS system utilities.
+
 Your dotfiles are how you personalize your system.
 
-These are mine. Built for Mac OS X. Certified lit :fire: :fire: :fire:
+These are mine. Built for **macOS**.
 
-**Rationale**
+## Philosophy
 
-Setting up a new developer machine can be **ad-hoc**, **manual**, and **time-consuming**. This project simplifies that process using easy-to-understand instructions, configuration and scripts.
+Setting up a new developer machine can be **ad-hoc**, **manual**, and **time-consuming**. This project simplifies that process using easy-to-understand instructions, configuration and scripts specifically tailored for macOS.
 
-> Our goal is to automate at least **80%** of any new macOS system setup.
+> Our goal is to automate at least **80%** of any new **macOS** system setup.
 
 ## What's in the box?
 
-Setup and config for bash, curl, git, node, ruby, tmux, vim, brew, apps, dev environments and more — there's a lot to list so please see the full [Package Contents](docs/package-contents.md).
+Setup and config for bash, curl, git, node, ruby, tmux, vim, brew, apps, asdf, and more - all optimized for **macOS**.
 
 ### Highlights
 
-- **Xcode Command Line Tools** with automated install.
-- **Awesome bash setup**: [aliases](bash/.aliases), [functions](bash/.functions), [z](https://github.com/rupa/z), smart prompt, tab completion and more.
-- **Git done right**: [aliases](git/.gitconfig), [hub](https://hub.github.com), [git-friendly](https://github.com/jamiew/git-friendly) and custom scripts.
-- **Vim for the win** via [vim-pathogen](https://github.com/tpope/vim-pathogen), [vim-sensible](https://github.com/tpope/vim-sensible) and other plugins.
-- **tmux to the max** using [config](tmux/.tmux.conf) and shortcuts.
-- **Homebrew package manager** to install tools, applications and fonts.
-- **Must-have tools**: GNU core utils, gnupg, [quick look plugins](https://github.com/sindresorhus/quick-look-plugins), [wifi-password](https://github.com/rauchg/wifi-password), etc.
-- **Must-have apps**: Caffeine, Dropbox, Chrome, [Spectacle](https://www.spectacleapp.com), Spotify, etc.
-- **Developer tools**:  AWS CLI, Docker, MySQL, Postgres, Python, Yarn, etc.
-- **Developer apps**: iTerm2, Slack, VS Code, etc.
-- **Node development** using [asdf](https://github.com/asdf-vm/asdf) with global package installer.
-- **Ruby development** using [rbenv](https://github.com/rbenv/rbenv) and [ruby-build](https://github.com/rbenv/ruby-build).
-- **Goodies in [bin](bin)** including git and tmux tools.
-
-Also, last but not least:
-
-- **[Setup scripts](#setup)** to manage backup, install, config and symlinking (plus [migration](#migration)).
-- **Mackup** to [backup and restore](#mackup-for-backup) app settings and personal files.
-- **OS X defaults** geared towards developers.
-
-Sounds good? Let's go.
-
-## Install
-
-*Note: If working on a fresh install I recommend reading my [Mac OS X Setup Guide](docs/macos-setup.md) first.*
-
-### Using Git
-
-Clone the repository wherever you prefer — I like to store the files in **`~/projects/dotfiles`** and then symlink that to `~/dotfiles` (see [Symlinks](#step-5-symlinks)).
-
-```bash
-$ git clone https://github.com/bhicks329/dotfiles.git    
-```
+- **Xcode Command Line Tools** with automated install (macOS developer tools)
+- **Bash setup**: [aliases](base/config/bash/.aliases), [functions](base/config/bash/.functions), smart prompt, tab completion and more
+- **Git configuration**: [aliases](base/config/git/.gitconfig) and custom scripts
+- **Vim setup** via [vim-pathogen](https://github.com/tpope/vim-pathogen) and plugins
+- **tmux configuration** using [config](base/config/tmux/.tmux.conf) and shortcuts
+- **Homebrew package manager** (macOS) to install tools, applications and fonts
+- **Mac App Store integration** via mas-cli for installing Mac App Store apps
+- **asdf version manager** for managing multiple language versions (Node, Ruby, Python, etc.)
+- **Custom scripts in [bin](base/bin)** including git and tmux utilities
+- **Machine-specific overrides** to customize configs per machine
+- **macOS system defaults** configuration for optimal development setup
 
 ## Structure
 
-To keep the project organised all files are split into directories and grouped around topic areas:
+```
+dotfiles/
+├── precheck.sh           # Pre-flight check before setup
+├── setup.sh              # Main setup script
+├── setup/                # Setup scripts
+│   ├── lib.sh           # Helper functions
+│   ├── files.sh         # Define what to symlink
+│   ├── backup.sh        # Backup existing configs
+│   ├── brew.sh          # Homebrew setup
+│   ├── asdf.sh          # asdf version manager setup
+│   ├── node.sh          # Node.js global packages
+│   ├── vim.sh           # Vim plugins and setup
+│   └── symlinks.sh      # Create symlinks
+├── base/                 # Base configuration (deployed to all machines)
+│   ├── bin/             # Custom scripts
+│   ├── config/          # Config files by topic
+│   │   ├── asdf/        # asdf configs
+│   │   ├── bash/        # Bash configs
+│   │   ├── brew/        # Brewfile
+│   │   ├── git/         # Git configs
+│   │   ├── vim/         # Vim configs
+│   │   └── ...
+│   ├── themes/          # Terminal themes
+│   └── macos/           # macOS settings
+└── machines/            # Machine-specific overrides
+    └── <hostname>/      # Mirrors base/ structure
+        └── config/      # Override specific configs per machine
+```
 
-- **`ack`** — ack config
-- **`bash`** — bash specific config
-- **`bin`** — various binaries, symlinked to `~/bin` and in `$PATH`
-- **`curl`** — curl config
-- **`editor`** — editor config (including linters)
-- **`git`** — git config, attributes and ignore files
-- **`iterm2`** — iterm2 themes
-- **`mackup`** — config to backup app settings and personal files
-- **`.mackup`** — `.cfg` files for custom apps, symlinked to `~/.mackup`
-- **`macos`** — macOS prefs
-- **`node`** — node config
-- **`ruby`** — ruby config
-- **`screen`** — screen config
-- **`setup`** — install, migrate and backup scripts
-- **`shell`** — general shell config
-- **`terminal`** — terminal themes
-- **`tmux`** — tmux config
-- **`vim`** — vim config
-- **`wget`** — wget config
-- **`/`** — project files and setup script
+## Machine-Specific Configuration
 
-See [Extending](#extending) for information on adding new topics.
+The system supports per-machine config overrides. When you run setup, it detects your machine's hostname and checks for overrides in `machines/<hostname>/`.
 
-## Symlinks
+### How It Works
 
-[Symbolic links](https://en.wikipedia.org/wiki/Symbolic_link) (aka "symlinks") allow you to point one location on a system to another, be that a file or directory. They are similar to aliases and shortcuts, but more "powerful" in the context we'll be using them.
+**Directory-level overrides:**
+- Base config: `base/config/bash/` (all bash files)
+- Machine override: `machines/my-laptop/config/bash/` (if exists, uses these instead)
+- It's all-or-nothing per config directory
 
-Most dotfiles need to live in the root of a user's directory (`~/`) for applications to find them.
+**Example:**
 
-Rather than copy files to `~/` or put my entire `$HOME` under [version control](https://en.wikipedia.org/wiki/Version_control), I prefer to symlink dotfiles to my user directory. This offers several benefits:
+If your machine is named "widget":
+```bash
+# Create machine-specific bash configs
+mkdir -p machines/widget/config/bash
+cp -r base/config/bash/* machines/widget/config/bash/
+# Edit files in machines/widget/config/bash/ as needed
+```
 
-1. **I can edit files in one place** — changes apply to both my current system and this project's repo.
-2. **My user directory is clean** — no git repo in `~/`, no mess, no need for a complex `.gitignore`.
-3. **Symlinks are easy** — add, refresh and unlink using a config script.
+Now "widget" will use its own bash configs, while other machines use the base configs.
 
-OK, that's enough theory, let's get things set up.
+### When to Use Overrides
 
-## Setup
+Use machine overrides when you need:
+- Different git email/signing keys per machine
+- Work vs. personal bash aliases
+- Different Brewfiles (work machine vs. home machine)
+- Machine-specific environment variables
+
+## Install
+
+### Prerequisites
+
+⚠️ **macOS Required** - This setup will **only** work on macOS. It uses:
+- Homebrew (macOS package manager)
+- mas-cli (Mac App Store command line)
+- macOS-specific bash utilities
+- macOS system preferences
+
+**Requirements:**
+- **macOS** (tested on macOS 12+)
+- **Terminal.app** (do NOT run in iTerm initially - use native Terminal.app)
+- **Admin access** (sudo privileges required)
+- **Internet connection** (for downloading packages)
+
+### Clone the Repository
+
+On your **macOS** machine:
+
+```bash
+git clone https://github.com/bhicks329/dotfiles.git ~/source/dotfiles
+cd ~/source/dotfiles
+```
+
+## Setup Process
+
+### 1. Pre-Check (Recommended)
+
+Run the pre-check script to see what will change:
+
+```bash
+./precheck.sh
+```
+
+This will:
+- Show existing files that would be replaced
+- Display diffs for conflicts
+- Let you create machine overrides interactively
+- Give you a summary before making any changes
+
+### 2. Run Setup
 
 :warning: **Scripts in this project perform automated tasks. Review the code first and use at your own risk!** :warning:
 
-This projects takes a light-weight approach to automation using a combination of **[Homebrew](https://brew.sh)**, **[Homebrew Cask](https://caskroom.github.io)**, and **shell scripts**.  To setup simply open Terminal then:
-
 ```bash
-$ cd ~/projects/dotfiles # or wherever you cloned to.
-$ ./setup.sh
+./setup.sh
 ```
 
-The setup process will start and guide you through:
+The setup process will guide you through:
 
-![Setup screen](docs/setup.png)
+1. **Backup** - Creates `~/backup/dotfiles-backup` with copies of existing config files
+2. **Directories** - Creates required directories (e.g., `~/source`, `~/repos`, `~/.ssh`)
+3. **Xcode Command Line Tools** - Installs macOS developer tools
+4. **Homebrew** - Installs Homebrew (macOS package manager) and packages from Brewfile
+5. **asdf** - Sets up asdf version manager and installs Node.js plugin
+6. **Node.js** - Installs global npm packages
+7. **Vim** - Installs vim plugins via pathogen
+8. **Symlinks** - Creates symlinks from `base/` (or `machines/<hostname>/`) to your home directory
+9. **Final touches** - macOS Terminal themes, SSH permissions, etc.
 
-You'll also be asked to enter your password once at the start — **if using on a fresh install, you'll have to restart after the first run applies system updates.**
+## Symlinks
 
-### Step-by-step
+[Symbolic links](https://en.wikipedia.org/wiki/Symbolic_link) allow you to point one location on a system to another. Rather than copy files to `~/`, this project symlinks them.
 
-Setup consists of six steps:
+### Benefits
 
-1. [**Backup** directories and files we'll be touching](#step-1-backup)
-2. [Create required **directories**](#step-2-directories)
-3. [Install **Xcode Command Line Tools**](#step-3-xcode-command-line-tools)
-4. [Install **Homebrew** and all required apps](#step-4-homebrew)
-5. [Create **symlinks** for directories and files](#step-5-symlinks)
-6. [Final touches](#step-6-final-touches)
+1. **Edit files in one place** - changes apply to both your system and the repo
+2. **Clean user directory** - no git repo in `~/`, no mess
+3. **Easy to manage** - add, refresh and unlink using scripts
+4. **Version controlled** - track changes to your configs
 
-### Step 1: Backup
+### How it works
 
-> This step runs the [`setup/backup.sh`](setup/backup.sh) script.
+- **Directory symlinks**: `base/bin/` → `~/bin`
+- **File symlinks**: Files in `base/config/bash/` → `~/.bashrc`, `~/.bash_profile`, etc.
 
-Creates `~/backup/dotfiles-backup` then takes a copy of all files on the current system which would be replaced by the setup script (as defined [here](docs/backup.md)) — it also backs up some other useful local directories and files.
+File types symlinked: `.*`, `*.cfg`, `*.conf` (excluding `.DS_Store`, `.git`, `*.sh`)
 
-### Step 2: Directories
+## Customization
 
-> This step runs the [`setup/directories.sh`](setup/directories.sh) script.
+### Local Config Files
 
-Creates required and preferred directories (if they don't already exist) for example: `~/Applications`, `~/projects`, `~/code`, `.ssh/control`, etc.
+Create "local" config files that are never committed to avoid storing private data:
 
-### Step 3: Xcode Command Line Tools
-
-> This step runs the [`setup/xcodecli.sh`](setup/xcodecli.sh) script.
-
-The [Xcode Command Line Tools](https://developer.apple.com/library/content/technotes/tn2339/_index.html) contain tools required by this setup script, this step will:
-
-1. Install the Xcode Command Line Tools
-2. Configure the tools
-3. Prompt for license agreement
-
-### Step 4: Homebrew
-
-> This step runs the [`setup/brew.sh`](setup/brew.sh) script.
-
-Package managers make it easy to install, update and remove software The best package manager for OS X is [Homebrew](http://brew.sh) — this step installs Homebrew along with many useful formulae and apps:
-
-1. Install Homebrew
-2. Install [Core utils](docs/package-contents.md#core-utils)
-3. Install [Other useful utils](docs/package-contents.md#other-useful-utils)
-4. Install [Backup tools](docs/package-contents.md#backup-tools)
-5. Install [Development tools](docs/package-contents.md#development-tools)
-6. Install [Databases](docs/package-contents.md#databases)
-7. Install [DevOps tools](docs/package-contents.md#devops-tools)
-8. Install [Webfont tools](docs/package-contents.md#webfont-tools)
-9. Install [Fonts](docs/package-contents.md#fonts)
-10. Install [Applications](docs/package-contents.md#applications-installed-via-homebrew-cask)
-11. Install [Quicklook plugins](docs/package-contents.md#quicklook-plugins)
-
-The script then uses [`mas`](https://github.com/mas-cli/mas) to install some [Mac App Store applications](docs/package-contents.md#mac-app-store-applications) unavailable via Homebrew.
-
-#### Node setup
-
-Post application install the script [`setup/node.sh`](setup/node.sh) is run which:
-
-1. Installs the latest Node release using [`asdf`](https://github.com/asdf-vm/asdf)
-2. Installs the current LTS Node release using [`asdf`](https://github.com/asdf-vm/asdf)
-3. Updates `npm`
-4. Creates `~/.node-global-modules`
-5. Installs [global modules](docs/package-contents.md#global-modules) to this folder
-
-#### Vim setup
-
-After this, the script [`setup/vim.sh`](setup/vim.sh) is run which:
-
-1. Creates required vim directories
-2. Installs [vim-pathogen](https://github.com/tpope/vim-pathogen)
-3. Installs [plugins](docs/package-contents.md#vim)
-
-### Step 5: Symlinks
-
-> This step runs the [`setup/symlinks.sh`](setup/symlinks.sh) script.
-
-Creates symlinks for all required directories and files to `~/`. These are defined in [`setup/files.sh`](setup/files.sh) as:
-
-1. All directories declared in `$dotfilesdirarray`
-2. Any file of an [accepted type](#which-files-will-be-symlinked) in a directory declared in `$dotfilesfilearray`
-3. Custom manually declared files ([git-friendly](https://github.com/jamiew/git-friendly) scripts to `bin`)
-
-This also links the local repository directory to `~/dotfiles` if it was cloned to a different location.
-
-**Symlinking directories:** If directory `bin` is declared in `$dotfilesdirarray` then the whole directory will be symlinked to `~/bin`.
-
-**Symlinking files:** If directory `bash` is declared in `$dotfilesfilearray` then any file of an [accepted type](#which-files-will-be-symlinked) will be symlinked to `~/`. For example:
-
-- `bash/.aliases` links to `~/.aliases`
-- `bash/.bash_profile` links to `~/.bash_profile`
-- `bash/.functions` links to `~/.function`
-- and so on.
-
-#### Which files will be symlinked?
-
-**Only files of type `.*`, `*.cfg` and `*.conf` will be symlinked.** Also, certain files are explicitly ignored:
-
-- `.DS_Store`, `.git`, `.osx` and `.macos`
-- any file of type `*.sh`
-
-#### Symlink scripts
-
-The symlink script can be run independently from a shell — it performs various checks, asks questions and provides feedback. Equally there is an [`setup/unlink.sh`](setup/unlink.sh) which unlinks all created symlinks.
-
-### Step 6: Final touches
-
-Finally a number of other tasks are performed:
-
-- Install a [better .nanorc config](https://github.com/scopatz/nanorc)
-- Set `chmod 700 ~/.ssh` and `chmod 600 ~/.ssh/*` (see [here](https://mediatemple.net/community/products/dv/204644740/using-ssh-keys-on-your-server))
-- *Note: see [here](docs/getting-started.md#a-word-on-unix-style-permissions) for more info on Unix style permissions*
-- Install Solarized Dark Theme for Terminal
-- Install Solarized Dark High Contrast Theme for iTerm2
-
-:zap: **Congrats, you now have an awesome macOS setup.** Open up iTerm2 and explore. :clap:
-
-## Usage
-
-It's beyond the scope of this readme to fully document all features, but you can find some tips and features of notes in the [Getting Started](docs/getting-started.md) guide.
-
-## Customise using "local config"
-
-This project can be easily customised to suit personal settings and local requirements using "local config" files. This allows you to:
-
-- Use custom settings without forking this project.
-- Set config you don’t want to commit to a public repo.
-- Store credentials that should remain private.
-
-As mentioned, it's **very** important to avoid storing private data or credentials in a dotfiles repository, using "local config" files that are never committed to public version control is a good way to achieve this.
-
-### Adding custom bash commands
-
-If an `~/.extra` file exists, it will be sourced on load after all other bash files. You can use this to store custom aliases, functions, exports and settings.
-
-**Example `~/.extra` file:**
+**`~/.extra`** - Custom bash commands, sourced after all other bash files:
 
 ```bash
-alias myalias=some-other-command -options
-
-my_function () {
-  do something here
-}
-
+alias myalias=some-command
 export MY_SETTING=VALUE
 ```
 
-You could also use `~/.extra` to override *existing* settings, functions and aliases — but at that point, it's probably better just to [fork](#fork) and create your own dotfiles. :raised_hands:
-
-### Customising your `$PATH`
-
-The included [`.path`](bash/.path) file is pre-configured and sourced on load. To add custom entries to your path, create a `~/.path.local` file.
-
-**Example `~/.path.local` file:**
+**`~/.path.local`** - Custom PATH entries:
 
 ```bash
-# Add to the start of the path
 PATH="/your/path/here:$PATH"
-
-# Add to the end of the path
-PATH="$PATH:/your/path/here"
 ```
 
-This will also be sourced on load and the final `$PATH` will be deduplicated on export.
-
-### Customising Git
-
-Customise your Git config by creating a `~/.gitconfig.local` file which will extend [`.gitconfig`](git/.gitconfig). Use this to store private details such as your user credentials and signing key.
-
-**Example `~/.gitconfig.local` file:**
+**`~/.gitconfig.local`** - Private git config (credentials, signing key):
 
 ```ini
 [user]
-
-  name = "Firstname Lastname"
-  email = "your@emailaddress.com"
-
-[github]
-
-  user = your-github-username
-
-[credential]
-
-  helper = osxkeychain
-
+  name = "Your Name"
+  email = "your@email.com"
 [commit]
-
-  signingkey = YOUR-SIGNING-KEY-HERE
+  signingkey = YOUR-KEY
 ```
 
-### Customising Vim
+**`~/.vimrc.local`** - Custom vim configuration
 
-Customise your Vim config by creating a `~/.vimrc.local` file which will extend [`.vimrc`](vim/.vimrc).
+**`~/.tmux.conf.local`** - Custom tmux configuration
 
-### Customising tmux
+**`~/.tool-versions`** - asdf language versions (project-specific or global)
 
-Customise your tmux config by creating a `~/.tmux.conf.local` file which will extend [`.tmux.conf`](tmux/.tmux.conf).
+### Adding New Config Directories
 
-## Fork
+To add a new config directory (e.g., for zsh):
 
-**Feel free to fork this repo, hack around, and make it your own** :ok_hand:
+1. Create the directory:
+   ```bash
+   mkdir -p base/config/zsh
+   ```
 
-### Extending
+2. Add your config files:
+   ```bash
+   touch base/config/zsh/.zshrc
+   ```
 
-This project is organised around topics, see [Structure](#structure) for more information.
+3. Add to [setup/files.sh](setup/files.sh):
+   ```bash
+   "$(get_config_path "config/zsh")"
+   ```
 
-To add a new topic to your forked dotfiles, you can simply add a `/topic-name` directory and put any files in there. Let's use "Java" as an example:
+That's it! The files will be auto-discovered and symlinked.
 
-1. Create a `java` directory in your dotfiles root.
-2. Inside there, create two files: `java.conf` and `.javarc`
+### Adding New Machines
 
-If you then edit [`setup/files.sh`](setup/files.sh) you have two options:
+To set up a new machine with custom configs:
 
-#### A) Symlink the entire folder
+1. Run setup on the new machine first (uses base configs)
+2. Create machine override directory:
+   ```bash
+   mkdir -p machines/$(hostname -s)/config/bash
+   ```
+3. Copy and customize:
+   ```bash
+   cp base/config/bash/.bashrc machines/$(hostname -s)/config/bash/
+   # Edit as needed
+   ```
+4. Commit and push the machine configs
+5. Re-run `./setup.sh` to apply overrides
 
-This will symlink the `java` directory to `~/java` (if that doesn't already exist). Useful if you want access to a number and variety of files within a directory.
+## macOS System Defaults
 
-To do this, simply add `"$dotfilesdir/java"` to the `dotfilesdirarray`:
+macOS has hundreds of system preferences that can be configured via the command line. This dotfiles setup includes a script to set sensible defaults for development.
+
+**What it configures:**
+- Finder settings (show hidden files, extensions, etc.)
+- Dock preferences
+- Keyboard and trackpad settings
+- Energy saving preferences
+- And much more...
+
+To apply these macOS-specific settings (review the script first!):
 
 ```bash
-# Declare array of directories we want to symlink.
-declare -a dotfilesdirarray=(
-  "$dotfilesdir/bin"
-  ...  
-  "$dotfilesdir/java"
-)
+cd ~/source/dotfiles/base/macos && ./.macos
 ```
 
-Then run the [symlink script](#symlink-scripts) to apply the link.
+:warning: **Only run this if you understand what it does!** This modifies macOS system preferences.
 
-#### B) Symlink *files* in the folder
+## Maintenance
 
-This will symlink files of [accepted types](#which-files-will-be-symlinked) in the `java` directory to `~/` (if they don't exist already) — so for our example, it would create links to `~/java.conf` and `~/.javarc`.
-
-To do this, add `"$dotfilesdir/java"` to the `dotfilesfilearray`:
+### Updating Your Dotfiles
 
 ```bash
-# Declare array of directories we want to symlink files from.
-declare -a dotfilesfilearray=(
-  "$dotfilesdir/bash"
-  "$dotfilesdir/git"
-  ...
-  "$dotfilesdir/java"
-)
+cd ~/source/dotfiles
+git pull
+./setup.sh  # Re-run to update symlinks if needed
 ```
 
-Then run the [symlink script](#symlink-scripts) to apply the links.
+### Adding New Tools
 
-## Going further
+1. Add to `base/config/brew/.brewfile` for Homebrew packages (macOS apps and CLI tools)
+2. Add Mac App Store apps using `mas` in the Brewfile (e.g., `mas "Xcode", id: 497799835`)
+3. Add to `setup/node.sh` for npm global packages
+4. Add to `base/config/asdf/.tool-versions` for language versions
 
-### Sensible Mac OS X defaults
+## Platform Support
 
-When setting up a new Mac, you may want to set some sensible defaults (as maintained by [Mathias](http://mths.be/macos)).
+This dotfiles setup is **exclusively for macOS**. It relies on:
+- Homebrew (macOS package manager)
+- mas-cli (Mac App Store automation)
+- macOS-specific paths and utilities
+- macOS system preferences APIs
 
-I have included my tweaked version of these settings in this repository, [take a look](macos/.macos) but :warning: **be very careful using this file** :warning: — I do *not* recommend just running it without reviewing and understanding it carefully first.
+**Not compatible with:**
+- Linux (different package managers, paths, and system tools)
+- Windows (completely different architecture)
+- WSL (Windows Subsystem for Linux)
 
-```bash
-$ cd ~/dotfiles/macos && ./.macos
-```
-
-*If in any doubt, don't run this script, rather configure what you can manually.*
-
-### Mackup for backup
-
-[Mackup](https://github.com/lra/mackup) is a fantastic tool that allows you to: backup personal application settings and private data; sync that data between computers; and then easily restore your configuration to a fresh install — all in a simple command line interface. Seems good!
-
-While by no means a comprehensive backup solution, Mackup keeps things simple, currently supports [over 360 applications](https://github.com/lra/mackup/mackup/applications) and can store data on Dropbox, Google Drive, iCloud or any path you can copy to.
-
-#### How I use Mackup
-
-I store on Dropbox and explicitly declare which apps to sync and which to ignore — anything handled by my dotfiles is ignored (bash, git, vim etc.)
-
-I backup a wide range of other applications including those containing credentials such as aws, gnupg and ssh. I also backup apps not natively supported using custom `.cfg` files. For example, to backup [Ulysses](https://ulyssesapp.com) (an amazing markdown writing app) I created a `~/.mackup` directory and placed a `ulysses.cfg` file inside:
-
-```ini
-[application]
-name = Ulysses
-
-[configuration_files]
-Library/Preferences/com.soulmen.ulysses3.plist
-Library/Preferences/com.ulyssesapp.mac.plist
-```
-
-It is usually straight-forward to find which `.plist` files in `Library/Preferences` you'll need to list, they always feature the application name.
-
-Taking that a step further we can also declare a "personal files" application using a `personal-files.cfg` and then cherry pick any other files we want to backup while keeping them out of a public repo:
-
-```ini
-[application]
-name = Personal Files
-
-[configuration_files]
-.gitconfig.local
-.extra
-```
-
-When I declare this in my main [`.mackup.cfg`](mackup/.mackup.cfg) they are handled with ease:
-
-```ini
-[storage]
-engine = dropbox
-directory = mackup
-
-# Apps to sync — if empty, syncs all supported.
-# custom: personal-files, break, grammarly, iconjar, iterm2, oversight, ulysses
-[applications_to_sync]
-personal-files
-aws
-...
-ulysses
-```
-
-A simple `$ mackup backup` saves everything to Dropbox and I can later `$ mackup restore` on a fresh install to get these settings back (you can also easily `$ mackup uninstall`).
-
-These dotfiles symlink my Mackup config into `~/` — take a look :eyes:.
-
-### Migration
-
-In addition to setup, it's possible to use these dotfiles on an configured Mac system to migrate to a new machine using the [`setup/migrate.sh`](setup/migrate.sh) script.
-
-:warning: Caution is advised here — see the [Migration Guide](docs/migration.md) for more information.
-
-## Acknowledgements
-
-Credit, inspiration and thanks to:
-
-- [Dev Setup](https://github.com/donnemartin/dev-setup)
-- [Awesome Dotfiles](https://github.com/webpro/awesome-dotfiles)
-- [Mathias](https://github.com/mathiasbynens/dotfiles)
-- [Paul Irish](https://github.com/paulirish/dotfiles)
-- [Holman](https://github.com/holman/dotfiles)
-- [Mislav](https://github.com/mislav/dotfiles)
-- [Springload](https://github.com/springload/dotfiles)
-
-And too many others to name.
+For Linux/Windows, you would need to fork and significantly modify the setup scripts, Brewfile, and system-specific configurations.
 
 ## License
 
-[MIT](https://github.com/aaronbates/dotfiles/blob/master/LICENSE-MIT.txt) &copy; 2017 Aaron Bates ([http://aaronbates.me](http://aaronbates.me))
-
-## TODO
-
-- [ ] Install without Git
-- [ ] Take user info for custom config setup (name/email/url)
-- [ ] Add BATS test suite
-- [ ] Ruby config
-- [ ] Databases config
-- [ ] Devops config (VM, Docker)
-- [ ] Consider additional [vim plugins](https://github.com/square/maximum-awesome)
+MIT
 
 ----
 
-:octocat: There's no place like `$HOME`.
+:octocat: There's no place like `$HOME` (on macOS).

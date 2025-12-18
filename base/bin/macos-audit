@@ -1,0 +1,391 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+PASS_COUNT=0
+FAIL_COUNT=0
+SKIP_COUNT=0
+
+pass() {
+  PASS_COUNT=$((PASS_COUNT + 1))
+  printf "[pass] %s\n" "$1"
+}
+
+check_defaults_bool_optional() {
+  local label="$1"
+  local domain="$2"
+  local key="$3"
+  local expected="$4" # true|false
+
+  local actual
+  if ! actual=$(read_defaults "$domain" "$key"); then
+    skip "$label ($domain $key): not present"
+    return
+  fi
+
+  local expected_num
+  local actual_num
+  if [ "$expected" = "true" ]; then
+    expected_num=1
+  else
+    expected_num=0
+  fi
+
+  case "$actual" in
+    1|true|TRUE|YES|yes) actual_num=1 ;;
+    0|false|FALSE|NO|no) actual_num=0 ;;
+    *)
+      fail "$label (expected: $expected, actual: '$actual')"
+      return
+      ;;
+  esac
+
+  if [ "$actual_num" -eq "$expected_num" ]; then
+    pass "$label"
+  else
+    fail "$label (expected: $expected, actual: '$actual')"
+  fi
+}
+
+check_defaults_int_optional() {
+  local label="$1"
+  local domain="$2"
+  local key="$3"
+  local expected="$4"
+
+  local actual
+  if ! actual=$(read_defaults "$domain" "$key"); then
+    skip "$label ($domain $key): not present"
+    return
+  fi
+
+  if [ "$actual" = "$expected" ]; then
+    pass "$label"
+  else
+    fail "$label (expected: $expected, actual: $actual)"
+  fi
+}
+
+check_defaults_currenthost_bool() {
+  local label="$1"
+  local domain="$2"
+  local key="$3"
+  local expected="$4" # true|false
+
+  local actual
+  if ! actual=$(read_defaults_currenthost "$domain" "$key"); then
+    fail "$label ($domain $key): missing"
+    return
+  fi
+
+  local expected_num
+  local actual_num
+  if [ "$expected" = "true" ]; then
+    expected_num=1
+  else
+    expected_num=0
+  fi
+
+  case "$actual" in
+    1|true|TRUE|YES|yes) actual_num=1 ;;
+    0|false|FALSE|NO|no) actual_num=0 ;;
+    *)
+      fail "$label (expected: $expected, actual: '$actual')"
+      return
+      ;;
+  esac
+
+  if [ "$actual_num" -eq "$expected_num" ]; then
+    pass "$label"
+  else
+    fail "$label (expected: $expected, actual: '$actual')"
+  fi
+}
+
+check_defaults_currenthost_int() {
+  local label="$1"
+  local domain="$2"
+  local key="$3"
+  local expected="$4"
+
+  local actual
+  if ! actual=$(read_defaults_currenthost "$domain" "$key"); then
+    fail "$label ($domain $key): missing"
+    return
+  fi
+
+  if [ "$actual" = "$expected" ]; then
+    pass "$label"
+  else
+    fail "$label (expected: $expected, actual: $actual)"
+  fi
+}
+
+fail() {
+  FAIL_COUNT=$((FAIL_COUNT + 1))
+  printf "[fail] %s\n" "$1"
+}
+
+skip() {
+  SKIP_COUNT=$((SKIP_COUNT + 1))
+  printf "[skip] %s\n" "$1"
+}
+
+read_defaults() {
+  local domain="$1"
+  local key="$2"
+  defaults read "$domain" "$key" 2>/dev/null || return 1
+}
+
+read_defaults_currenthost() {
+  local domain="$1"
+  local key="$2"
+  defaults -currentHost read "$domain" "$key" 2>/dev/null || return 1
+}
+
+check_defaults_string() {
+  local label="$1"
+  local domain="$2"
+  local key="$3"
+  local expected="$4"
+
+  local actual
+  if ! actual=$(read_defaults "$domain" "$key"); then
+    fail "$label ($domain $key): missing"
+    return
+  fi
+
+  if [ "$actual" = "$expected" ]; then
+    pass "$label"
+  else
+    fail "$label (expected: '$expected', actual: '$actual')"
+  fi
+}
+
+check_defaults_bool() {
+  local label="$1"
+  local domain="$2"
+  local key="$3"
+  local expected="$4" # true|false
+
+  local actual
+  if ! actual=$(read_defaults "$domain" "$key"); then
+    fail "$label ($domain $key): missing"
+    return
+  fi
+
+  local expected_num
+  local actual_num
+  if [ "$expected" = "true" ]; then
+    expected_num=1
+  else
+    expected_num=0
+  fi
+
+  case "$actual" in
+    1|true|TRUE|YES|yes) actual_num=1 ;;
+    0|false|FALSE|NO|no) actual_num=0 ;;
+    *)
+      fail "$label (expected: $expected, actual: '$actual')"
+      return
+      ;;
+  esac
+
+  if [ "$actual_num" -eq "$expected_num" ]; then
+    pass "$label"
+  else
+    fail "$label (expected: $expected, actual: '$actual')"
+  fi
+}
+
+check_defaults_int() {
+  local label="$1"
+  local domain="$2"
+  local key="$3"
+  local expected="$4"
+
+  local actual
+  if ! actual=$(read_defaults "$domain" "$key"); then
+    fail "$label ($domain $key): missing"
+    return
+  fi
+
+  if [ "$actual" = "$expected" ]; then
+    pass "$label"
+  else
+    fail "$label (expected: $expected, actual: $actual)"
+  fi
+}
+
+check_pmset_int() {
+  local label="$1"
+  local key="$2"
+  local expected="$3"
+
+  local actual
+  if ! actual=$(pmset -g custom 2>/dev/null | awk -v k="$key" '$1==k {print $2; exit}'); then
+    fail "$label ($key): unable to read"
+    return
+  fi
+
+  if [ -z "$actual" ]; then
+    skip "$label ($key): not applicable on this hardware"
+    return
+  fi
+
+  if [ "$actual" = "$expected" ]; then
+    pass "$label"
+  else
+    fail "$label (expected: $expected, actual: $actual)"
+  fi
+}
+
+check_scutil_string() {
+  local label="$1"
+  local key="$2" # ComputerName|HostName|LocalHostName
+  local expected="$3"
+
+  local actual
+  actual=$(scutil --get "$key" 2>/dev/null || true)
+  if [ -z "$actual" ]; then
+    fail "$label ($key): missing"
+    return
+  fi
+
+  if [ "$actual" = "$expected" ]; then
+    pass "$label"
+  else
+    fail "$label (expected: '$expected', actual: '$actual')"
+  fi
+}
+
+printf "macOS settings audit (read-only)\n"
+printf "macOS: %s\n" "$(sw_vers -productVersion 2>/dev/null || echo unknown)"
+printf "Host: %s\n\n" "$(hostname -s 2>/dev/null || echo unknown)"
+
+# Optional/gated settings from base/macos/.macos
+if [ -n "${DOTFILES_COMPUTER_NAME:-}" ]; then
+  check_scutil_string "ComputerName set" "ComputerName" "${DOTFILES_COMPUTER_NAME}"
+  check_scutil_string "HostName set" "HostName" "${DOTFILES_COMPUTER_NAME}"
+  check_scutil_string "LocalHostName set" "LocalHostName" "${DOTFILES_COMPUTER_NAME}"
+else
+  skip "ComputerName/HostName/LocalHostName (set DOTFILES_COMPUTER_NAME to audit)"
+fi
+
+if [ -n "${DOTFILES_DISABLE_BOOT_SOUND:-}" ]; then
+  # Best-effort: reading NVRAM may require privileges; treat failure as fail.
+  if nvram SystemAudioVolume 2>/dev/null | grep -q 'SystemAudioVolume'; then
+    pass "Boot sound nvram key present"
+  else
+    fail "Boot sound nvram key missing/unreadable"
+  fi
+else
+  skip "Boot sound disable (set DOTFILES_DISABLE_BOOT_SOUND=1 to audit)"
+fi
+
+if [ -n "${DOTFILES_DISABLE_MEDIA_KEY_PLAYER:-}" ]; then
+  # launchctl output differs by macOS versions; best-effort only.
+  if launchctl print gui/"$(id -u)" 2>/dev/null | grep -qi com.apple.rcd; then
+    fail "Media key agent com.apple.rcd appears loaded"
+  else
+    pass "Media key agent com.apple.rcd not detected"
+  fi
+else
+  skip "Disable media-key player (set DOTFILES_DISABLE_MEDIA_KEY_PLAYER=1 to audit)"
+fi
+
+if [ -n "${DOTFILES_DISABLE_DASHBOARD:-}" ]; then
+  check_defaults_bool "Dashboard disabled" "com.apple.dashboard" "mcx-disabled" true
+else
+  skip "Dashboard disable (set DOTFILES_DISABLE_DASHBOARD=1 to audit)"
+fi
+
+# General UI/UX
+check_defaults_string "Always show scrollbars" "NSGlobalDomain" "AppleShowScrollBars" "Always"
+check_defaults_bool "Expand save panel by default (SaveMode)" "NSGlobalDomain" "NSNavPanelExpandedStateForSaveMode" true
+check_defaults_bool "Expand save panel by default (SaveMode2)" "NSGlobalDomain" "NSNavPanelExpandedStateForSaveMode2" true
+check_defaults_bool "Expand print panel by default (Print)" "NSGlobalDomain" "PMPrintingExpandedStateForPrint" true
+check_defaults_bool "Expand print panel by default (Print2)" "NSGlobalDomain" "PMPrintingExpandedStateForPrint2" true
+check_defaults_bool "Save new documents to disk (not iCloud)" "NSGlobalDomain" "NSDocumentSaveNewDocumentsToCloud" false
+check_defaults_bool "Disable automatic termination" "NSGlobalDomain" "NSDisableAutomaticTermination" true
+check_defaults_bool "Help Viewer dev mode" "com.apple.helpviewer" "DevMode" true
+
+check_defaults_bool "Disable auto-capitalization" "NSGlobalDomain" "NSAutomaticCapitalizationEnabled" false
+check_defaults_bool "Disable smart dashes" "NSGlobalDomain" "NSAutomaticDashSubstitutionEnabled" false
+check_defaults_bool "Disable automatic period substitution" "NSGlobalDomain" "NSAutomaticPeriodSubstitutionEnabled" false
+check_defaults_bool "Disable smart quotes" "NSGlobalDomain" "NSAutomaticQuoteSubstitutionEnabled" false
+check_defaults_bool "Disable auto-correct" "NSGlobalDomain" "NSAutomaticSpellingCorrectionEnabled" false
+
+# Trackpad/keyboard
+check_defaults_bool_optional "Tap to click" "com.apple.driver.AppleBluetoothMultitouch.trackpad" "Clicking" true
+check_defaults_currenthost_int "Tap behavior (currentHost)" "NSGlobalDomain" "com.apple.mouse.tapBehavior" 1
+check_defaults_int "Tap behavior (global)" "NSGlobalDomain" "com.apple.mouse.tapBehavior" 1
+check_defaults_int_optional "Secondary click corner" "com.apple.driver.AppleBluetoothMultitouch.trackpad" "TrackpadCornerSecondaryClick" 2
+check_defaults_bool_optional "Secondary click enabled" "com.apple.driver.AppleBluetoothMultitouch.trackpad" "TrackpadRightClick" true
+check_defaults_int "Full keyboard access" "NSGlobalDomain" "AppleKeyboardUIMode" 3
+check_defaults_bool "Press-and-hold disabled" "NSGlobalDomain" "ApplePressAndHoldEnabled" false
+
+# Energy saving
+check_pmset_int "Lid wake enabled" "lidwake" 1
+check_pmset_int "Display sleep" "displaysleep" 15
+
+# Screen / screenshots
+check_defaults_int "Require password after sleep" "com.apple.screensaver" "askForPassword" 1
+check_defaults_int "Password delay" "com.apple.screensaver" "askForPasswordDelay" 0
+check_defaults_string "Screenshot location" "com.apple.screencapture" "location" "${HOME}/Desktop"
+check_defaults_string "Screenshot type" "com.apple.screencapture" "type" "png"
+check_defaults_bool "Disable screenshot shadow" "com.apple.screencapture" "disable-shadow" true
+
+# Finder
+check_defaults_bool "Finder animations disabled" "com.apple.finder" "DisableAllAnimations" true
+check_defaults_bool "Show external drives on Desktop" "com.apple.finder" "ShowExternalHardDrivesOnDesktop" true
+check_defaults_bool "Show hard drives on Desktop" "com.apple.finder" "ShowHardDrivesOnDesktop" true
+check_defaults_bool "Show mounted servers on Desktop" "com.apple.finder" "ShowMountedServersOnDesktop" true
+check_defaults_bool "Show removable media on Desktop" "com.apple.finder" "ShowRemovableMediaOnDesktop" true
+check_defaults_bool "Show hidden files" "com.apple.finder" "AppleShowAllFiles" true
+check_defaults_bool "Show all extensions" "NSGlobalDomain" "AppleShowAllExtensions" true
+check_defaults_bool "Show Finder status bar" "com.apple.finder" "ShowStatusBar" true
+check_defaults_bool "Show Finder path bar" "com.apple.finder" "ShowPathbar" true
+check_defaults_bool "Show POSIX path in title" "com.apple.finder" "_FXShowPosixPathInTitle" true
+check_defaults_bool "Sort folders first" "com.apple.finder" "_FXSortFoldersFirst" true
+check_defaults_string "Default search scope" "com.apple.finder" "FXDefaultSearchScope" "SCcf"
+check_defaults_bool "Disable extension change warning" "com.apple.finder" "FXEnableExtensionChangeWarning" false
+check_defaults_bool "Avoid .DS_Store on network" "com.apple.desktopservices" "DSDontWriteNetworkStores" true
+check_defaults_bool "Avoid .DS_Store on USB" "com.apple.desktopservices" "DSDontWriteUSBStores" true
+
+# Dock
+check_defaults_bool "Minimize to application" "com.apple.dock" "minimize-to-application" true
+check_defaults_bool "Show open app indicators" "com.apple.dock" "show-process-indicators" true
+check_defaults_bool "Only show open apps" "com.apple.dock" "static-only" true
+check_defaults_bool "Don't rearrange Spaces" "com.apple.dock" "mru-spaces" false
+check_defaults_string "Minimize effect" "com.apple.dock" "mineffect" "scale"
+check_defaults_bool "Show hidden app translucency" "com.apple.dock" "showhidden" true
+
+# Safari
+check_defaults_bool "Safari universal search disabled" "com.apple.Safari" "UniversalSearchEnabled" false
+check_defaults_bool "Safari search suggestions suppressed" "com.apple.Safari" "SuppressSearchSuggestions" true
+check_defaults_bool "Safari show full URL" "com.apple.Safari" "ShowFullURLInSmartSearchField" true
+check_defaults_string "Safari home page" "com.apple.Safari" "HomePage" "about:blank"
+check_defaults_bool "Safari auto-open safe downloads disabled" "com.apple.Safari" "AutoOpenSafeDownloads" false
+check_defaults_bool "Safari show favorites bar" "com.apple.Safari" "ShowFavoritesBar" false
+check_defaults_bool "Safari develop menu enabled" "com.apple.Safari" "IncludeDevelopMenu" true
+check_defaults_bool "Safari internal debug menu" "com.apple.Safari" "IncludeInternalDebugMenu" true
+check_defaults_bool "Safari DNT enabled" "com.apple.Safari" "SendDoNotTrackHTTPHeader" true
+
+# Time Machine
+check_defaults_bool "No Time Machine new disk prompts" "com.apple.TimeMachine" "DoNotOfferNewDisksForBackup" true
+
+# Photos
+check_defaults_currenthost_bool "Disable Photos auto-open" "com.apple.ImageCapture" "disableHotPlug" true
+
+# Chrome
+check_defaults_bool "Chrome disable mouse swipe back" "com.google.Chrome" "AppleEnableMouseSwipeNavigateWithScrolls" false
+check_defaults_bool "Chrome Canary disable mouse swipe back" "com.google.Chrome.canary" "AppleEnableMouseSwipeNavigateWithScrolls" false
+check_defaults_bool "Chrome native print dialog" "com.google.Chrome" "DisablePrintPreview" true
+check_defaults_bool "Chrome Canary native print dialog" "com.google.Chrome.canary" "DisablePrintPreview" true
+
+printf "\nSummary: %d pass, %d fail, %d skip\n" "$PASS_COUNT" "$FAIL_COUNT" "$SKIP_COUNT"
+
+if [ "$FAIL_COUNT" -gt 0 ]; then
+  exit 1
+fi

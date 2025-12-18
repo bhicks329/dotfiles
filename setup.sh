@@ -13,7 +13,7 @@
 # 5. Symlinks
 # 6. Misc.
 
-debug=${1:-false} # default debug param.
+debug=${1:-false} # default debug param.  
 source ./setup/lib.sh # load help lib.
 
 # ----
@@ -23,6 +23,60 @@ echo -e "\n\e[1m\$HOME sweet /~\n\e[0m"
 
 defaultdotfilesdir="$HOME/dotfiles"
 dotfilesdir=$(pwd)
+
+# ============================================
+# Machine Override System
+# ============================================
+# Detect machine name and set up overrides
+MACHINE_NAME=${DOTFILES_MACHINE:-$(hostname -s)}
+MACHINE_DIR="$dotfilesdir/machines/$MACHINE_NAME"
+
+bot "Detecting machine configuration..."
+echo -e "Machine hostname: \e[1m$(hostname -s)\e[0m"
+if [ -n "${DOTFILES_MACHINE:-}" ]; then
+  echo -e "Machine profile override (DOTFILES_MACHINE): \e[1m$MACHINE_NAME\e[0m"
+else
+  echo -e "Machine profile: \e[1m$MACHINE_NAME\e[0m"
+fi
+
+# Function to get the correct path (machine override or base)
+# Usage: get_config_path "config/bash" returns either machines/widget/config/bash or base/config/bash
+get_config_path() {
+  local config_dir=$1
+  local machine_override="$MACHINE_DIR/$config_dir"
+  local base_path="$dotfilesdir/base/$config_dir"
+
+  if [ -d "$machine_override" ]; then
+    echo "$machine_override"
+  else
+    echo "$base_path"
+  fi
+}
+
+# Check if machine profile exists
+if [ -d "$MACHINE_DIR" ]; then
+  success "Found machine profile: $MACHINE_DIR"
+
+  # List available overrides
+  echo -e "\nMachine-specific overrides:"
+  for dir in bash git brew vim tmux shell editor; do
+    if [ -d "$MACHINE_DIR/$dir" ]; then
+      echo -e "  ✓ $dir/ (using machine override)"
+    fi
+  done
+  echo ""
+else
+  warn "No machine profile found for '$MACHINE_NAME'"
+  warn "Using base configuration only."
+  echo -e "\nTo create a machine profile:"
+  echo -e "  mkdir -p machines/$MACHINE_NAME"
+  echo -e "  # Add overrides in machines/$MACHINE_NAME/bash, machines/$MACHINE_NAME/brew, etc.\n"
+fi
+
+# Export for use in other scripts
+export MACHINE_NAME
+export MACHINE_DIR
+export -f get_config_path
 
 #if is_git_repository; then
 # git pull origin master # pull repo.
@@ -105,10 +159,10 @@ if ! $brewinstall;  then
 fi;
 
 # asdf setup
-#source ./setup/asdf.sh
+source ./setup/asdf.sh
 
 # Node setup
-#source ./setup/node.sh
+source ./setup/node.sh
 
 # vim setup
 source ./setup/vim.sh

@@ -9,7 +9,7 @@ fi;
 # Load dirs and files if not already loaded.
 if [ -z ${filesloaded+x} ]; then
   source ./files.sh
-  echo -en "\n"
+  printf "\n"
 fi;
 
 # Set dotfilesdir var if not declared.
@@ -53,12 +53,8 @@ for i in "${dotfilesfilearray[@]}"; do
 done;
 
 # Custom symlinks.
-action "Creating custom symlinks."
-# git-friendly symlinks
-process_symlinks "$dotfilesdir/bin/git-friendly/branch" "$dotfilesdir/bin/git-friendly" "$dotfilesdir/bin"
-process_symlinks "$dotfilesdir/bin/git-friendly/merge" "$dotfilesdir/bin/git-friendly" "$dotfilesdir/bin"
-process_symlinks "$dotfilesdir/bin/git-friendly/pull" "$dotfilesdir/bin/git-friendly" "$dotfilesdir/bin"
-process_symlinks "$dotfilesdir/bin/git-friendly/push" "$dotfilesdir/bin/git-friendly" "$dotfilesdir/bin"
+# action "Creating custom symlinks."
+# (none currently configured)
 
 
 # If files are not stored in ~/dotfiles then symlink to that folder
@@ -117,5 +113,6 @@ if $linkdotfilesdirerror; then
   error "Could not symlink to $defaultdotfilesdir -- this means the commands 'df', 'dotfiles' and export '\$DOTFILES_DIR' will not point to $dotfilesdir correctly."
 fi;
 
-echo -e "\n"
-success "Processed symlinks.\n"
+printf "\n"
+success "Processed symlinks."
+printf "\n"
