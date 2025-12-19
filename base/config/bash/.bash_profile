@@ -151,7 +151,7 @@ export PATH="/usr/local/opt/node@16/bin:$PATH"
 
 export PATH="/Users/ben/.npm-global/bin:$PATH"
 export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
-. "$HOME/.cargo/env"
+[ -f "$HOME/.cargo/env" ] && . "$HOME/.cargo/env"
 export PATH="/opt/homebrew/opt/ruby/bin:$PATH"
 
 # Added by OrbStack: command-line tools and integration
