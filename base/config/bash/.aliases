@@ -13,7 +13,7 @@ alias ...="cd ../.."
 alias ....="cd ../../.."
 alias .....="cd ../../../.."
 alias ~="cd $HOME" # `cd` is probably faster to type though
-alias -- -="cd -"
+alias ..-="cd -"
 
 # Shortcuts
 alias dbox="cd $HOME/Dropbox"

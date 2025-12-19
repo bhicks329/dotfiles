@@ -1,7 +1,9 @@
 #!/usr/bin/env bash
 
 # Build, dedupe and then export PATH.
-PATH="$HOME/bin"
+# Homebrew bin should be first to override system binaries
+PATH="/opt/homebrew/bin"
+PATH="$PATH:$HOME/bin"
 PATH="$PATH:$HOME/.local/bin"
 PATH="$PATH:/usr/local/opt/findutils/libexec/gnubin"
 PATH="$PATH:/usr/local/opt/grep/libexec/gnubin"
@@ -39,8 +41,5 @@ fi;
 if hash awk 2>/dev/null; then
   PATH=$(echo "$PATH" | awk -v RS=':' -v ORS=":" '!a[$1]++{if (NR > 1) printf ORS; printf $a[$1]}')
 fi;
-
-#
-PATH="$PATH:/opt/homebrew/bin"
 
 export PATH

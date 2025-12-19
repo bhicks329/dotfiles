@@ -43,13 +43,46 @@ shopt -s dirspell 2> /dev/null
 for option in autocd globstar; do
   shopt -s "$option" 2> /dev/null;
 done;
-[[ -r "$(brew --prefix)/etc/profile.d/bash_completion.sh" ]] && source "$(brew --prefix)/etc/profile.d/bash_completion.sh"
+# Load bash-completion@2
+if [ -f "$(brew --prefix)/etc/profile.d/bash_completion.sh" ]; then
+  source "$(brew --prefix)/etc/profile.d/bash_completion.sh"
+fi
 
 # import homebrew bash-completions
 #source $(brew --prefix asdf)/etc/bash_completion.d/asdf.bash
 source "$(brew --prefix)/etc/bash_completion.d/brew"
 # source "$(brew --prefix)/etc/bash_completion.d/gibo-completion.bash"
 source "$(brew --prefix)/etc/bash_completion.d/git-completion.bash"
+
+# kubectl completion
+if command -v kubectl &> /dev/null; then
+  source <(kubectl completion bash)
+  # Enable kubectl completion for all kubectl aliases
+  complete -o default -F __start_kubectl k
+  complete -o default -F __start_kubectl kg
+  complete -o default -F __start_kubectl kd
+  complete -o default -F __start_kubectl kdel
+  complete -o default -F __start_kubectl kl
+  complete -o default -F __start_kubectl klf
+  complete -o default -F __start_kubectl kex
+  complete -o default -F __start_kubectl ka
+  complete -o default -F __start_kubectl kgp
+  complete -o default -F __start_kubectl kgd
+  complete -o default -F __start_kubectl kgs
+  complete -o default -F __start_kubectl kgn
+  complete -o default -F __start_kubectl kgns
+  complete -o default -F __start_kubectl kpf
+  complete -o default -F __start_kubectl kdp
+  complete -o default -F __start_kubectl kdd
+  complete -o default -F __start_kubectl kds
+  complete -o default -F __start_kubectl kgpa
+  complete -o default -F __start_kubectl kgda
+  complete -o default -F __start_kubectl kgsa
+  complete -o default -F __start_kubectl krr
+  complete -o default -F __start_kubectl krs
+  complete -o default -F __start_kubectl krh
+  complete -o default -F __start_kubectl kru
+fi
 
 # Enable tab completion for `g` by marking it as an alias for `git`.
 complete -o default -o nospace -F _git g;
@@ -124,3 +157,6 @@ export PATH="/opt/homebrew/opt/ruby/bin:$PATH"
 # Added by OrbStack: command-line tools and integration
 # This won't be added again if you remove it.
 source ~/.orbstack/shell/init.bash 2>/dev/null || :
+
+# Ensure /opt/homebrew/bin is first in PATH (after all other modifications)
+export PATH="/opt/homebrew/bin:${PATH//:\/opt\/homebrew\/bin/}"
