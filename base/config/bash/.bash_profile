@@ -117,7 +117,7 @@ zpath="$(brew --prefix)/etc/profile.d/z.sh"
 bind Space:magic-space
 
 # asdf
-#source $(brew --prefix asdf)/asdf.sh
+source $(brew --prefix asdf)/libexec/asdf.sh
 
 # pyevnv
 if hash pyenv 2>/dev/null; then
@@ -160,3 +160,6 @@ source ~/.orbstack/shell/init.bash 2>/dev/null || :
 
 # Ensure /opt/homebrew/bin is first in PATH (after all other modifications)
 export PATH="/opt/homebrew/bin:${PATH//:\/opt\/homebrew\/bin/}"
+
+# Ensure asdf shims take precedence over Homebrew for version-managed tools
+export PATH="$HOME/.asdf/shims:$PATH"
